@@ -3,8 +3,10 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/common/ThemeToggle";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Search } from "lucide-react";
 import { motion } from "framer-motion";
+import { categories } from "@/data/categories";
+import { Input } from "@/components/ui/input";
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -16,7 +18,9 @@ const navLinks = [
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState("all");
   const location = useLocation();
+  const isComponentsPage = location.pathname === "/components";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,6 +34,15 @@ export const Navbar = () => {
     // Close mobile menu when route changes
     setMobileMenuOpen(false);
   }, [location.pathname]);
+
+  // Pass selected category to the app via URL or context if needed
+  const handleCategorySelect = (categoryId: string) => {
+    setSelectedCategory(categoryId);
+    // You might want to dispatch an event or use context to communicate with ComponentsPage
+    const event = new CustomEvent('categorySelected', { detail: categoryId });
+    window.dispatchEvent(event);
+    setMobileMenuOpen(false);
+  };
 
   return (
     <header
@@ -94,6 +107,27 @@ export const Navbar = () => {
         </div>
       </div>
 
+      {/* Desktop Category Navigation (Only on Components page) */}
+      {isComponentsPage && !mobileMenuOpen && (
+        <div className="hidden md:block border-t border-border">
+          <div className="container mx-auto px-4 py-2">
+            <div className="flex items-center space-x-2 overflow-x-auto">
+              {categories.map((category) => (
+                <Button
+                  key={category.id}
+                  variant={selectedCategory === category.id ? "default" : "ghost"}
+                  size="sm"
+                  onClick={() => handleCategorySelect(category.id)}
+                  className="whitespace-nowrap"
+                >
+                  {category.name}
+                </Button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Mobile Navigation Menu */}
       {mobileMenuOpen && (
         <motion.div
@@ -103,17 +137,53 @@ export const Navbar = () => {
           transition={{ duration: 0.2 }}
           className="md:hidden border-b border-border"
         >
-          <div className="container mx-auto px-4 py-4 space-y-1">
-            {navLinks.map((link) => (
-              <Link key={link.path} to={link.path} className="block">
-                <Button
-                  variant={location.pathname === link.path ? "default" : "ghost"}
-                  className="w-full justify-start"
-                >
-                  {link.name}
-                </Button>
-              </Link>
-            ))}
+          <div className="container mx-auto px-4 py-4 space-y-4">
+            {/* Main navigation links */}
+            <div className="space-y-1">
+              {navLinks.map((link) => (
+                <Link key={link.path} to={link.path} className="block">
+                  <Button
+                    variant={location.pathname === link.path ? "default" : "ghost"}
+                    className="w-full justify-start"
+                  >
+                    {link.name}
+                  </Button>
+                </Link>
+              ))}
+            </div>
+            
+            {/* Categories section - only on components page */}
+            {isComponentsPage && (
+              <div className="space-y-2 pt-2 border-t border-border">
+                <h3 className="text-sm font-medium px-3 text-muted-foreground">Categories</h3>
+                <div className="space-y-1">
+                  {categories.map((category) => (
+                    <Button
+                      key={category.id}
+                      variant={selectedCategory === category.id ? "default" : "ghost"}
+                      className="w-full justify-start"
+                      onClick={() => handleCategorySelect(category.id)}
+                    >
+                      {category.name}
+                    </Button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Mobile search - only on components page */}
+            {isComponentsPage && (
+              <div className="pt-2 border-t border-border">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+                  <Input
+                    type="text"
+                    placeholder="Search components..."
+                    className="pl-10"
+                  />
+                </div>
+              </div>
+            )}
           </div>
         </motion.div>
       )}

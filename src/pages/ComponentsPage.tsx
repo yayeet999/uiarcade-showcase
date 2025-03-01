@@ -51,7 +51,8 @@ const ComponentsPage = () => {
       </div>
 
       <div className="flex flex-col lg:flex-row gap-8">
-        <div className="lg:w-1/4">
+        {/* Category sidebar - hidden on mobile */}
+        <div className="hidden lg:block lg:w-1/4">
           <div className="sticky top-24">
             <div className="mb-6">
               <div className="relative">
@@ -82,7 +83,21 @@ const ComponentsPage = () => {
           </div>
         </div>
 
-        <div className="lg:w-3/4">
+        <div className="lg:w-3/4 w-full">
+          {/* Mobile search */}
+          <div className="lg:hidden mb-6">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+              <Input
+                type="text"
+                placeholder="Search components..."
+                className="pl-10"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </div>
+          </div>
+          
           <CategoryInfo categoryId={selectedCategory} />
           
           {filteredComponents.length === 0 ? (
