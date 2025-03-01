@@ -18,7 +18,11 @@ export const ComponentCard = ({ component, index, layout = "grid", categoryId = 
   const navigate = useNavigate();
   
   const handleClick = () => {
-    navigate(`/components/${categoryId}/${component.id}`);
+    if (categoryId && categoryId !== "all") {
+      navigate(`/components/${categoryId}/${component.id}`);
+    } else {
+      navigate(`/components/${component.id}`);
+    }
   };
 
   const item = {
@@ -76,7 +80,11 @@ export const ComponentCard = ({ component, index, layout = "grid", categoryId = 
                 className="text-xs gap-1 opacity-70 hover:opacity-100"
                 onClick={(e) => {
                   e.stopPropagation();
-                  navigate(`/components/${categoryId}/${component.id}`);
+                  if (categoryId && categoryId !== "all") {
+                    navigate(`/components/${categoryId}/${component.id}`);
+                  } else {
+                    navigate(`/components/${component.id}`);
+                  }
                 }}
               >
                 View Code <ArrowRight className="h-3 w-3" />

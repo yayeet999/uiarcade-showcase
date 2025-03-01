@@ -11,7 +11,7 @@ import { getComponentCode } from "@/registry";
 import NotFoundPage from "./NotFoundPage";
 
 const ComponentDetailPage = () => {
-  const { componentId } = useParams();
+  const { componentId, categoryId } = useParams();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("html");
   
