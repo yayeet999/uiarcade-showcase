@@ -6,7 +6,7 @@ export type ComponentCategory = {
   icon?: string;
   order?: number;
   displayOptions?: {
-    layout?: 'grid' | 'list';
+    layout?: 'grid' | 'list' | 'compact';
     itemsPerPage?: number;
     showDescription?: boolean;
   };
