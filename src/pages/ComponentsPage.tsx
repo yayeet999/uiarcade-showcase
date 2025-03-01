@@ -1,9 +1,6 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
 import { ComponentCard } from "@/components/common/ComponentCard"; 
 import { CategoryInfo } from "@/components/common/CategoryInfo";
 import { searchComponents } from "@/data/components";
@@ -68,69 +65,29 @@ const ComponentsPage = () => {
     }
   };
 
-  // Determine layout classes based on category settings
-  const getLayoutClasses = () => {
-    switch (layout) {
-      case "list":
-        return "flex flex-col gap-4";
-      case "compact":
-        return "grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4";
-      case "grid":
-      default:
-        return "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6";
-    }
+  // Get grid columns based on category
+  const getGridColumns = (categoryId: string) => {
+    const baseClasses = "grid gap-6 w-full";
+    const mobileClass = "grid-cols-1";
+    const tabletClass = "md:grid-cols-2";
+    
+    const categoryColumns: Record<string, string> = {
+      all: "lg:grid-cols-4",
+      forms: "lg:grid-cols-3",
+      buttons: "lg:grid-cols-4",
+      cards: "lg:grid-cols-4",
+      images: "lg:grid-cols-3",
+      inputs: "lg:grid-cols-4",
+      loaders: "lg:grid-cols-4",
+      others: "lg:grid-cols-4"
+    };
+
+    return `${baseClasses} ${mobileClass} ${tabletClass} ${categoryColumns[categoryId] || categoryColumns.all}`;
   };
 
   return (
     <div className="container mx-auto px-4 py-12">
-      <div className="text-center mb-12">
-        <motion.h1 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-4xl font-bold mb-4"
-        >
-          UI Components
-        </motion.h1>
-        <motion.p 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-lg text-muted-foreground max-w-2xl mx-auto"
-        >
-          Browse our collection of beautiful and functional UI components for your next project.
-        </motion.p>
-      </div>
-
       <div className="w-full">
-        {/* Mobile search */}
-        <div className="md:hidden mb-6">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-            <Input
-              type="text"
-              placeholder="Search components..."
-              className="pl-10"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </div>
-        </div>
-        
-        {/* Desktop search */}
-        <div className="hidden md:block mb-6">
-          <div className="relative w-full max-w-sm mx-auto">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-            <Input
-              type="text"
-              placeholder="Search components..."
-              className="pl-10"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </div>
-        </div>
-        
         <CategoryInfo categoryId={selectedCategory} />
         
         {currentComponents.length === 0 ? (
@@ -141,7 +98,7 @@ const ComponentsPage = () => {
         ) : (
           <>
             <motion.div 
-              className={getLayoutClasses()}
+              className={getGridColumns(selectedCategory)}
               variants={container}
               initial="hidden"
               animate="show"

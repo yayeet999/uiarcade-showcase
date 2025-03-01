@@ -2,9 +2,11 @@
 export type ComponentCategory = {
   id: string;
   name: string;
-  description: string;
-  icon?: string;
+  description?: string;
+  icon?: any;
   order?: number;
+  href?: string;
+  maxColumns?: number;
   displayOptions?: {
     layout?: 'grid' | 'list' | 'compact';
     itemsPerPage?: number;
