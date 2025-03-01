@@ -1,15 +1,14 @@
-
 import { Component } from "@/types/components";
 
 export const components: Component[] = [
   { 
     id: 1, 
-    name: "Button", 
+    name: "Lavender Auth Form", 
     category: "forms", 
-    description: "Button component with multiple variants",
-    tags: ["interactive", "action", "click"],
+    description: "A modern authentication form with smooth animations, gradient background, and interactive states",
+    tags: ["form", "auth", "animated", "gradient", "interactive"],
     status: "stable",
-    docsUrl: "/docs/button"
+    docsUrl: "/docs/lavender-auth-form"
   },
   { 
     id: 2, 
@@ -22,12 +21,12 @@ export const components: Component[] = [
   },
   { 
     id: 3, 
-    name: "Input", 
+    name: "Grey Retro Auth Form", 
     category: "forms", 
-    description: "Input field with various states",
-    tags: ["form", "text", "data entry"],
+    description: "A modern retro-styled authentication form with stepped sign-in, social auth options, and smooth animations",
+    tags: ["form", "auth", "retro", "social", "animated"],
     status: "stable",
-    docsUrl: "/docs/input"
+    docsUrl: "/docs/grey-retro-auth-form"
   },
   { 
     id: 4, 
@@ -40,12 +39,12 @@ export const components: Component[] = [
   },
   { 
     id: 5, 
-    name: "Modal", 
-    category: "feedback", 
-    description: "Modal dialog for important actions",
-    tags: ["dialog", "popup", "overlay"],
+    name: "Cyber Punk Auth Form",
+    category: "forms",
+    description: "A cyberpunk-themed authentication form with XP progression, level system, and social login options",
+    tags: ["form", "auth", "cyberpunk", "animated", "social", "game"],
     status: "stable",
-    docsUrl: "/docs/modal"
+    docsUrl: "/docs/cyber-punk-auth-form"
   },
   { 
     id: 6, 
@@ -75,15 +74,6 @@ export const components: Component[] = [
     docsUrl: "/docs/avatar"
   },
   { 
-    id: 9, 
-    name: "Toggle", 
-    category: "forms", 
-    description: "Toggle switch for boolean values",
-    tags: ["switch", "boolean", "control"],
-    status: "stable",
-    docsUrl: "/docs/toggle"
-  },
-  { 
     id: 10, 
     name: "Alert", 
     category: "feedback", 
@@ -110,6 +100,51 @@ export const components: Component[] = [
     status: "stable",
     docsUrl: "/docs/tooltip"
   },
+  { 
+    id: 13, 
+    name: "Animated Submit Button", 
+    category: "buttons", 
+    description: "A modern, minimalist submit button with smooth animations, loading states, and success feedback",
+    tags: ["interactive", "animation", "submit", "loading", "success"],
+    status: "stable",
+    docsUrl: "/docs/animated-submit-button"
+  },
+  { 
+    id: 14, 
+    name: "Buy Now Button", 
+    category: "buttons", 
+    description: "Animated gradient button with hover and click effects",
+    tags: ["button", "animation", "gradient", "interactive"],
+    status: "stable",
+    docsUrl: "/docs/buy-now-button"
+  },
+  { 
+    id: 15, 
+    name: "Download Button", 
+    category: "buttons", 
+    description: "Interactive download button with progress indicator and success animation",
+    tags: ["button", "animation", "download", "progress", "interactive"],
+    status: "stable",
+    docsUrl: "/docs/download-button"
+  },
+  { 
+    id: 16, 
+    name: "Delete Button", 
+    category: "buttons", 
+    description: "Interactive delete button with confirmation, progress indicator, and success animation",
+    tags: ["button", "animation", "delete", "confirmation", "interactive"],
+    status: "stable",
+    docsUrl: "/docs/delete-button"
+  },
+  { 
+    id: 17, 
+    name: "Google Auth Button", 
+    category: "buttons", 
+    description: "Modern Google sign-in button with magnetic outline, particle effects, and smooth animations",
+    tags: ["button", "google", "auth", "animation", "interactive", "social"],
+    status: "stable",
+    docsUrl: "/docs/google-auth-button"
+  }
 ];
 
 export const getComponentsByCategory = (categoryId: string): Component[] => {

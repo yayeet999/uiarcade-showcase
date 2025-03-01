@@ -1,15 +1,12 @@
-
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "@/components/common/ThemeToggle";
-import { Menu, X, Search, FormInput } from "lucide-react";
+import { Menu, X, Search } from "lucide-react";
 import { motion } from "framer-motion";
 import { categories } from "@/data/categories";
 import { Input } from "@/components/ui/input";
 
 const navLinks = [
-  { name: "Home", path: "/" },
   { name: "Components", path: "/components" },
   { name: "Documentation", path: "/docs" },
   { name: "About", path: "/about" },
@@ -82,14 +79,10 @@ export const Navbar = () => {
                 </Button>
               </Link>
             ))}
-            <div className="ml-4">
-              <ThemeToggle />
-            </div>
           </nav>
 
           {/* Mobile Menu Button */}
-          <div className="flex items-center md:hidden space-x-2">
-            <ThemeToggle />
+          <div className="flex items-center md:hidden">
             <Button
               variant="ghost"
               size="icon"

@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -28,6 +27,15 @@ const ComponentDetailPage = () => {
     toast.success("Code copied to clipboard!");
   };
 
+  // Render the actual component preview
+  const ComponentPreview = () => {
+    if (!componentCode.component) {
+      return <div dangerouslySetInnerHTML={{ __html: componentCode.preview }} />;
+    }
+    const Component = componentCode.component;
+    return <Component />;
+  };
+
   return (
     <div className="container mx-auto px-4 py-12">
       <Button 
@@ -48,7 +56,7 @@ const ComponentDetailPage = () => {
         >
           <h2 className="text-2xl font-bold mb-6">{component.name} Preview</h2>
           <div className="flex items-center justify-center min-h-[400px] bg-muted rounded-lg p-6">
-            <div dangerouslySetInnerHTML={{ __html: componentCode.preview }} />
+            <ComponentPreview />
           </div>
         </motion.div>
 
@@ -72,30 +80,41 @@ const ComponentDetailPage = () => {
               </Button>
             </div>
             
-            <Tabs value={activeTab} onValueChange={setActiveTab}>
+            <Tabs value={activeTab} onValueChange={setActiveTab} className="h-[500px] flex flex-col">
               <TabsList className="w-full">
                 <TabsTrigger value="html" className="flex-1">HTML</TabsTrigger>
                 <TabsTrigger value="css" className="flex-1">CSS</TabsTrigger>
                 <TabsTrigger value="fullcode" className="flex-1">Full Code</TabsTrigger>
               </TabsList>
 
-              <TabsContent value="html" className="mt-4">
-                <pre className="bg-muted p-4 rounded-lg overflow-x-auto">
-                  <code>{componentCode.html}</code>
-                </pre>
-              </TabsContent>
+              <div className="flex-1 relative mt-4">
+                <TabsContent 
+                  value="html" 
+                  className="absolute inset-0 m-0"
+                >
+                  <pre className="bg-muted h-full rounded-lg overflow-auto custom-scrollbar">
+                    <code className="block p-4">{componentCode.html}</code>
+                  </pre>
+                </TabsContent>
 
-              <TabsContent value="css" className="mt-4">
-                <pre className="bg-muted p-4 rounded-lg overflow-x-auto">
-                  <code>{componentCode.css}</code>
-                </pre>
-              </TabsContent>
+                <TabsContent 
+                  value="css" 
+                  className="absolute inset-0 m-0"
+                >
+                  <pre className="bg-muted h-full rounded-lg overflow-auto custom-scrollbar">
+                    <code className="block p-4">{componentCode.css}</code>
+                  </pre>
+                </TabsContent>
 
-              <TabsContent value="fullcode" className="mt-4">
-                <pre className="bg-muted p-4 rounded-lg overflow-x-auto">
-                  <code>{componentCode.fullcode}</code>
-                </pre>
-              </TabsContent>
+                <TabsContent 
+                  value="fullcode" 
+                  className="absolute inset-0 m-0"
+                >
+                  <pre className="bg-muted h-full rounded-lg overflow-auto custom-scrollbar">
+                    <code className="block p-4">{componentCode.fullcode}</code>
+                  </pre>
+                </TabsContent>
+              </div>
             </Tabs>
           </div>
         </motion.div>
