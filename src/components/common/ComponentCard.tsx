@@ -68,8 +68,8 @@ export const ComponentCard = ({ component, index, layout = "grid", categoryId = 
               <ComponentPreview />
             </div>
             
-            {/* View Code button at bottom left */}
-            <div className="absolute bottom-2 left-2">
+            {/* View Code button moved to bottom right */}
+            <div className="absolute bottom-2 right-2">
               <Button 
                 variant="secondary" 
                 size="sm" 
