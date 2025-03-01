@@ -1,6 +1,6 @@
 
 import { ComponentCategory } from "@/types/components";
-import { Layers, FileText, Square, LayoutGrid, Image, Input, Loader2, Plus } from "lucide-react";
+import { Layers, FileText, Square, LayoutGrid, Image, FormInput, Loader2, Plus } from "lucide-react";
 
 export const categories: ComponentCategory[] = [
   { 
@@ -77,7 +77,7 @@ export const categories: ComponentCategory[] = [
     id: "inputs", 
     name: "Inputs",
     description: "Input components for forms and data collection",
-    icon: Input,
+    icon: FormInput,
     href: "/components/inputs",
     order: 5,
     maxColumns: 4,

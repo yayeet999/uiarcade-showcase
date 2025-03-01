@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/common/ThemeToggle";
-import { Menu, X, Search } from "lucide-react";
+import { Menu, X, Search, FormInput } from "lucide-react";
 import { motion } from "framer-motion";
 import { categories } from "@/data/categories";
 import { Input } from "@/components/ui/input";
