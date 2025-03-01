@@ -63,18 +63,19 @@ export const Pagination = ({ currentPage, totalPages, onPageChange }: Pagination
   };
 
   return (
-    <nav className="flex items-center space-x-1" aria-label="Pagination">
+    <nav className="flex items-center space-x-2 touch-manipulation" aria-label="Pagination">
       <Button 
         variant="outline" 
         size="icon" 
         onClick={handlePrevious}
         disabled={currentPage === 1}
         aria-label="Go to previous page"
+        className="min-w-[40px] min-h-[40px]"
       >
         <ChevronLeft className="h-4 w-4" />
       </Button>
       
-      <div className="flex items-center space-x-1">
+      <div className="flex items-center space-x-2">
         {getPageNumbers().map((page, index) => 
           typeof page === "number" ? (
             <Button
@@ -84,6 +85,7 @@ export const Pagination = ({ currentPage, totalPages, onPageChange }: Pagination
               onClick={() => onPageChange(page)}
               aria-current={currentPage === page ? "page" : undefined}
               aria-label={`Go to page ${page}`}
+              className="min-w-[36px] min-h-[36px]"
             >
               {page}
             </Button>
@@ -99,6 +101,7 @@ export const Pagination = ({ currentPage, totalPages, onPageChange }: Pagination
         onClick={handleNext}
         disabled={currentPage === totalPages}
         aria-label="Go to next page"
+        className="min-w-[40px] min-h-[40px]"
       >
         <ChevronRight className="h-4 w-4" />
       </Button>
