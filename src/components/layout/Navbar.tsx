@@ -35,10 +35,9 @@ export const Navbar = () => {
     setMobileMenuOpen(false);
   }, [location.pathname]);
 
-  // Pass selected category to the app via URL or context if needed
+  // Handle category selection and dispatch event for ComponentsPage to listen to
   const handleCategorySelect = (categoryId: string) => {
     setSelectedCategory(categoryId);
-    // You might want to dispatch an event or use context to communicate with ComponentsPage
     const event = new CustomEvent('categorySelected', { detail: categoryId });
     window.dispatchEvent(event);
     setMobileMenuOpen(false);
@@ -180,6 +179,13 @@ export const Navbar = () => {
                     type="text"
                     placeholder="Search components..."
                     className="pl-10"
+                    onChange={(e) => {
+                      // Dispatch a custom event for the search query
+                      const event = new CustomEvent('searchQueryChanged', { 
+                        detail: e.target.value 
+                      });
+                      window.dispatchEvent(event);
+                    }}
                   />
                 </div>
               </div>

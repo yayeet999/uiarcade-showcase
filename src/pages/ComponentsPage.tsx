@@ -6,7 +6,6 @@ import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { ComponentCard } from "@/components/common/ComponentCard"; 
 import { CategoryInfo } from "@/components/common/CategoryInfo";
-import { categories } from "@/data/categories";
 import { searchComponents } from "@/data/components";
 import { Component } from "@/types/components";
 
@@ -18,6 +17,25 @@ const ComponentsPage = () => {
   useEffect(() => {
     setFilteredComponents(searchComponents(searchQuery, selectedCategory));
   }, [searchQuery, selectedCategory]);
+
+  // Listen for category selection events from the Navbar
+  useEffect(() => {
+    const handleCategoryChange = (event: CustomEvent) => {
+      setSelectedCategory(event.detail);
+    };
+    
+    const handleSearchQueryChange = (event: CustomEvent) => {
+      setSearchQuery(event.detail);
+    };
+    
+    window.addEventListener('categorySelected', handleCategoryChange as EventListener);
+    window.addEventListener('searchQueryChanged', handleSearchQueryChange as EventListener);
+    
+    return () => {
+      window.removeEventListener('categorySelected', handleCategoryChange as EventListener);
+      window.removeEventListener('searchQueryChanged', handleSearchQueryChange as EventListener);
+    };
+  }, []);
 
   const container = {
     hidden: { opacity: 0 },
@@ -50,78 +68,58 @@ const ComponentsPage = () => {
         </motion.p>
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-8">
-        {/* Category sidebar - hidden on mobile */}
-        <div className="hidden lg:block lg:w-1/4">
-          <div className="sticky top-24">
-            <div className="mb-6">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-                <Input
-                  type="text"
-                  placeholder="Search components..."
-                  className="pl-10"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
-              </div>
-            </div>
-            
-            <div className="space-y-1.5">
-              <h3 className="text-sm font-medium mb-2 text-muted-foreground">Categories</h3>
-              {categories.map((category) => (
-                <Button
-                  key={category.id}
-                  variant={selectedCategory === category.id ? "default" : "ghost"}
-                  className="justify-start w-full"
-                  onClick={() => setSelectedCategory(category.id)}
-                >
-                  {category.name}
-                </Button>
-              ))}
-            </div>
+      <div className="w-full">
+        {/* Mobile search */}
+        <div className="md:hidden mb-6">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+            <Input
+              type="text"
+              placeholder="Search components..."
+              className="pl-10"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
           </div>
         </div>
-
-        <div className="lg:w-3/4 w-full">
-          {/* Mobile search */}
-          <div className="lg:hidden mb-6">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-              <Input
-                type="text"
-                placeholder="Search components..."
-                className="pl-10"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+        
+        {/* Desktop search */}
+        <div className="hidden md:block mb-6">
+          <div className="relative w-full max-w-sm mx-auto">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+            <Input
+              type="text"
+              placeholder="Search components..."
+              className="pl-10"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </div>
+        </div>
+        
+        <CategoryInfo categoryId={selectedCategory} />
+        
+        {filteredComponents.length === 0 ? (
+          <div className="text-center py-20">
+            <h3 className="text-lg font-medium mb-2">No components found</h3>
+            <p className="text-muted-foreground">Try changing your search or filters</p>
+          </div>
+        ) : (
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            variants={container}
+            initial="hidden"
+            animate="show"
+          >
+            {filteredComponents.map((component, index) => (
+              <ComponentCard 
+                key={component.id} 
+                component={component} 
+                index={index}
               />
-            </div>
-          </div>
-          
-          <CategoryInfo categoryId={selectedCategory} />
-          
-          {filteredComponents.length === 0 ? (
-            <div className="text-center py-20">
-              <h3 className="text-lg font-medium mb-2">No components found</h3>
-              <p className="text-muted-foreground">Try changing your search or filters</p>
-            </div>
-          ) : (
-            <motion.div 
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-              variants={container}
-              initial="hidden"
-              animate="show"
-            >
-              {filteredComponents.map((component, index) => (
-                <ComponentCard 
-                  key={component.id} 
-                  component={component} 
-                  index={index}
-                />
-              ))}
-            </motion.div>
-          )}
-        </div>
+            ))}
+          </motion.div>
+        )}
       </div>
     </div>
   );
