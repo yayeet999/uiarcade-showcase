@@ -1,49 +1,23 @@
 
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Search } from "lucide-react";
-
-// Sample component categories
-const categories = [
-  { id: "all", name: "All Components" },
-  { id: "layout", name: "Layout" },
-  { id: "forms", name: "Forms" },
-  { id: "data-display", name: "Data Display" },
-  { id: "navigation", name: "Navigation" },
-  { id: "feedback", name: "Feedback" },
-  { id: "surfaces", name: "Surfaces" },
-];
-
-// Sample components data
-const components = [
-  { id: 1, name: "Button", category: "forms", description: "Button component with multiple variants" },
-  { id: 2, name: "Card", category: "surfaces", description: "Versatile card component for content" },
-  { id: 3, name: "Input", category: "forms", description: "Input field with various states" },
-  { id: 4, name: "Dropdown", category: "navigation", description: "Dropdown menu with customizable options" },
-  { id: 5, name: "Modal", category: "feedback", description: "Modal dialog for important actions" },
-  { id: 6, name: "Tabs", category: "navigation", description: "Tab interface for organized content" },
-  { id: 7, name: "Table", category: "data-display", description: "Data table with sorting and pagination" },
-  { id: 8, name: "Avatar", category: "data-display", description: "User avatar with various sizes" },
-  { id: 9, name: "Toggle", category: "forms", description: "Toggle switch for boolean values" },
-  { id: 10, name: "Alert", category: "feedback", description: "Alert messages for notifications" },
-  { id: 11, name: "Progress", category: "feedback", description: "Progress indicators and bars" },
-  { id: 12, name: "Tooltip", category: "feedback", description: "Contextual tooltips for elements" },
-];
+import { ComponentCard } from "@/components/common/ComponentCard"; 
+import { CategoryInfo } from "@/components/common/CategoryInfo";
+import { categories } from "@/data/categories";
+import { searchComponents } from "@/data/components";
+import { Component } from "@/types/components";
 
 const ComponentsPage = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
+  const [filteredComponents, setFilteredComponents] = useState<Component[]>([]);
 
-  const filteredComponents = components.filter((component) => {
-    const matchesCategory = selectedCategory === "all" || component.category === selectedCategory;
-    const matchesSearch = component.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                          component.description.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
-  });
+  useEffect(() => {
+    setFilteredComponents(searchComponents(searchQuery, selectedCategory));
+  }, [searchQuery, selectedCategory]);
 
   const container = {
     hidden: { opacity: 0 },
@@ -53,11 +27,6 @@ const ComponentsPage = () => {
         staggerChildren: 0.1
       }
     }
-  };
-
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0 }
   };
 
   return (
@@ -114,6 +83,8 @@ const ComponentsPage = () => {
         </div>
 
         <div className="lg:w-3/4">
+          <CategoryInfo categoryId={selectedCategory} />
+          
           {filteredComponents.length === 0 ? (
             <div className="text-center py-20">
               <h3 className="text-lg font-medium mb-2">No components found</h3>
@@ -126,29 +97,12 @@ const ComponentsPage = () => {
               initial="hidden"
               animate="show"
             >
-              {filteredComponents.map((component) => (
-                <motion.div key={component.id} variants={item}>
-                  <Link to={`/components/${component.name.toLowerCase()}`} className="block h-full">
-                    <Card className="h-full transition-all duration-300 hover:shadow-md">
-                      <CardHeader>
-                        <CardTitle>{component.name}</CardTitle>
-                        <CardDescription>
-                          {component.description}
-                        </CardDescription>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="h-32 bg-muted rounded-md flex items-center justify-center text-muted-foreground">
-                          Component Preview
-                        </div>
-                      </CardContent>
-                      <CardFooter>
-                        <Button variant="ghost" size="sm" className="ml-auto">
-                          View Details
-                        </Button>
-                      </CardFooter>
-                    </Card>
-                  </Link>
-                </motion.div>
+              {filteredComponents.map((component, index) => (
+                <ComponentCard 
+                  key={component.id} 
+                  component={component} 
+                  index={index}
+                />
               ))}
             </motion.div>
           )}
