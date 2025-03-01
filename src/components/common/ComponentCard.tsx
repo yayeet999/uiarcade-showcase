@@ -5,7 +5,6 @@ import { Component } from "@/types/components";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { AnimatedSubmitButton } from "@/components/ui/animated-submit-button";
 
 interface ComponentCardProps {
   component: Component;
@@ -49,10 +48,7 @@ export const ComponentCard = ({ component, index, layout = "grid", categoryId = 
           Sample Card
         </div>
       )}
-      {component.name === "Animated Submit Button" && (
-        <AnimatedSubmitButton>Submit</AnimatedSubmitButton>
-      )}
-      {component.name !== "Button" && component.name !== "Card" && component.name !== "Animated Submit Button" && (
+      {component.name !== "Button" && component.name !== "Card" && (
         <div className="text-sm text-muted-foreground">
           {component.name} Preview
         </div>

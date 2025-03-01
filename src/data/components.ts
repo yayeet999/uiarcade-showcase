@@ -110,15 +110,6 @@ export const components: Component[] = [
     status: "stable",
     docsUrl: "/docs/tooltip"
   },
-  { 
-    id: 13, 
-    name: "Animated Submit Button", 
-    category: "forms", 
-    description: "Interactive animated submit button with success state",
-    tags: ["button", "animation", "submit", "interaction"],
-    status: "stable",
-    docsUrl: "/docs/animated-submit-button"
-  },
 ];
 
 export const getComponentsByCategory = (categoryId: string): Component[] => {
