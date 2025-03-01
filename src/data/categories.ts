@@ -19,8 +19,8 @@ export const categories: ComponentCategory[] = [
     description: "Components that help with page structure and layout",
     order: 1,
     displayOptions: {
-      layout: "grid",
-      itemsPerPage: 9,
+      layout: "compact",
+      itemsPerPage: 8,
       showDescription: true
     }
   },
@@ -41,8 +41,8 @@ export const categories: ComponentCategory[] = [
     description: "Components for displaying various types of data and content",
     order: 3,
     displayOptions: {
-      layout: "grid",
-      itemsPerPage: 9,
+      layout: "list",
+      itemsPerPage: 5,
       showDescription: true
     }
   },
@@ -63,9 +63,9 @@ export const categories: ComponentCategory[] = [
     description: "Components for providing feedback to user interactions",
     order: 5,
     displayOptions: {
-      layout: "grid",
-      itemsPerPage: 9,
-      showDescription: true
+      layout: "compact",
+      itemsPerPage: 12,
+      showDescription: false
     }
   },
   { 
@@ -74,8 +74,8 @@ export const categories: ComponentCategory[] = [
     description: "Structural components that serve as containers",
     order: 6,
     displayOptions: {
-      layout: "grid",
-      itemsPerPage: 9,
+      layout: "list",
+      itemsPerPage: 6,
       showDescription: true
     }
   },
