@@ -144,7 +144,169 @@ export const components: Component[] = [
     tags: ["button", "google", "auth", "animation", "interactive", "social"],
     status: "stable",
     docsUrl: "/docs/google-auth-button"
-  }
+  },
+  { 
+    id: 18, 
+    name: "Personal Name Card",
+    category: "cards",
+    description: "A modern personal profile card with hover animations, social links, and a clean design",
+    tags: ["card", "profile", "social", "animated", "interactive"],
+    status: "stable",
+    docsUrl: "/docs/personal-name-card"
+  },
+  { 
+    id: 19, 
+    name: "Design Name Card",
+    category: "cards",
+    description: "A sleek designer profile card with gradient background, hover effects, and social media integration",
+    tags: ["card", "profile", "designer", "animated", "social", "gradient"],
+    status: "stable",
+    docsUrl: "/docs/design-name-card"
+  },
+  { 
+    id: 20, 
+    name: "Flip Hover Card",
+    category: "cards",
+    description: "An interactive card with 3D flip animation, gradient backgrounds, and engaging hover effects",
+    tags: ["card", "3d", "flip", "animated", "interactive", "gradient"],
+    status: "stable",
+    docsUrl: "/docs/flip-hover-card"
+  },
+  { 
+    id: 21, 
+    name: "Payment Popup Card",
+    category: "cards",
+    description: "A modern payment form with real-time card number formatting, validation, and success state",
+    tags: ["card", "payment", "form", "interactive", "animated", "checkout"],
+    status: "stable",
+    docsUrl: "/docs/payment-popup-card"
+  },
+  { 
+    id: 22, 
+    name: "Payment Tier Card",
+    category: "cards",
+    description: "A modern pricing tier card with hover animations, gradient effects, and interactive features",
+    tags: ["card", "pricing", "animated", "interactive", "gradient", "hover"],
+    status: "stable",
+    docsUrl: "/docs/payment-tier-card"
+  },
+  { 
+    id: 23, 
+    name: "GitHub Auth Button",
+    category: "buttons",
+    description: "A modern GitHub authentication button with letter animations, particle effects, and hover interactions",
+    tags: ["button", "github", "auth", "animated", "interactive", "social"],
+    status: "stable",
+    docsUrl: "/docs/github-auth-button"
+  },
+  { 
+    id: 24, 
+    name: "X Auth Button",
+    category: "buttons",
+    description: "A sleek X (Twitter) authentication button with electric effects, letter animations, and pulse interactions",
+    tags: ["button", "twitter", "x", "auth", "animated", "interactive", "social"],
+    status: "stable",
+    docsUrl: "/docs/x-auth-button"
+  },
+  { 
+    id: 25, 
+    name: "Facebook Auth Button",
+    category: "buttons",
+    description: "A modern Facebook authentication button with wave effects, expanding circles, and smooth hover interactions",
+    tags: ["button", "facebook", "auth", "animated", "interactive", "social", "wave"],
+    status: "stable",
+    docsUrl: "/docs/facebook-auth-button"
+  },
+  { 
+    id: 26, 
+    name: "Navy Auth Form",
+    category: "forms",
+    description: "A sleek, dark-themed authentication form with gradient animations, social login options, and smooth interactions",
+    tags: ["form", "auth", "dark", "animated", "social", "gradient"],
+    status: "stable",
+    docsUrl: "/docs/navy-auth-form"
+  },
+  { 
+    id: 27, 
+    name: "Modern Auth Form",
+    category: "forms",
+    description: "A modern authentication form with glassmorphism effects, gradient backgrounds, and smooth animations",
+    tags: ["form", "auth", "animated", "glassmorphism", "gradient", "social"],
+    status: "stable",
+    docsUrl: "/docs/modern-auth-form"
+  },
+  { 
+    id: 28, 
+    name: "Violet Auth Form",
+    category: "forms",
+    description: "A modern authentication form with diagonal gradient background, glassmorphic effects, and social login options",
+    tags: ["form", "auth", "animated", "glassmorphism", "gradient", "social"],
+    status: "stable",
+    docsUrl: "/docs/violet-auth-form"
+  },
+  {
+    id: 29,
+    name: "Send Button",
+    category: "buttons",
+    description: "A premium send button with smooth animations, including a flying paper airplane effect, loading spinner, success state, and ripple animation on click.",
+    tags: ["button", "animated", "send", "loading", "success", "ripple", "interactive"],
+    status: "stable",
+    docsUrl: "/docs/send-button",
+  },
+  {
+    id: 30,
+    name: "Reddit Auth Button",
+    category: "buttons",
+    description: "A modern Reddit authentication button with 3D logo rotation, blinking eyes animation, orbital rings, and smooth hover interactions",
+    tags: ["button", "reddit", "auth", "animated", "interactive", "social", "3d"],
+    status: "stable",
+    docsUrl: "/docs/reddit-auth-button",
+  },
+  {
+    id: 31,
+    name: "Add-to-Cart Button",
+    category: "buttons",
+    description: "A premium add to cart button with smooth animations, including cart slide-out effect, sparkles, success checkmark, and ripple animations",
+    tags: ["button", "cart", "animated", "interactive", "gradient", "sparkle", "ripple"],
+    status: "stable",
+    docsUrl: "/docs/add-to-cart-button"
+  },
+  {
+    id: 32,
+    name: "Apple Auth Button",
+    category: "buttons",
+    description: "A sleek Apple sign-in button with smooth hover animations, scaling logo, and letter spacing effects",
+    tags: ["button", "apple", "auth", "animated", "interactive", "social"],
+    status: "stable",
+    docsUrl: "/docs/apple-auth-button"
+  },
+  {
+    id: 33,
+    name: "Warning Sign",
+    category: "cards",
+    description: "A modern warning dialog card with animated icon, shimmer effects, and interactive close button",
+    tags: ["card", "warning", "animated", "interactive", "dialog", "alert"],
+    status: "stable",
+    docsUrl: "/docs/warning-sign"
+  },
+  {
+    id: 34,
+    name: "Buy Me Coffee",
+    category: "cards",
+    description: "A modern support card with animated coffee icon, glassmorphic effects, and a modal dialog for donations",
+    tags: ["card", "support", "animated", "interactive", "donation", "glassmorphism"],
+    status: "stable",
+    docsUrl: "/docs/buy-me-coffee"
+  },
+  {
+    id: 35,
+    name: "Feedback Card",
+    category: "cards",
+    description: "A modern feedback card with star rating system, gradient border, glassmorphic effects, and smooth animations",
+    tags: ["card", "feedback", "rating", "animated", "interactive", "glassmorphism", "gradient"],
+    status: "stable",
+    docsUrl: "/docs/feedback-card"
+  },
 ];
 
 export const getComponentsByCategory = (categoryId: string): Component[] => {

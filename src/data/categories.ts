@@ -1,6 +1,5 @@
-
 import { ComponentCategory } from "@/types/components";
-import { Layers, FileText, Square, LayoutGrid, Image, FormInput, Loader2, Plus } from "lucide-react";
+import { Layers, FileText, Square, LayoutGrid, FormInput, Plus } from "lucide-react";
 
 export const categories: ComponentCategory[] = [
   { 
@@ -60,40 +59,12 @@ export const categories: ComponentCategory[] = [
     }
   },
   { 
-    id: "images", 
-    name: "Images",
-    description: "Image display components",
-    icon: Image,
-    href: "/components/images",
-    order: 4,
-    maxColumns: 3,
-    displayOptions: {
-      layout: "grid",
-      itemsPerPage: 9,
-      showDescription: true
-    }
-  },
-  { 
     id: "inputs", 
     name: "Inputs",
     description: "Input components for forms and data collection",
     icon: FormInput,
     href: "/components/inputs",
-    order: 5,
-    maxColumns: 4,
-    displayOptions: {
-      layout: "grid",
-      itemsPerPage: 12,
-      showDescription: true
-    }
-  },
-  { 
-    id: "loaders", 
-    name: "Loaders",
-    description: "Loading and progress indicators",
-    icon: Loader2,
-    href: "/components/loaders",
-    order: 6,
+    order: 4,
     maxColumns: 4,
     displayOptions: {
       layout: "grid",
@@ -107,7 +78,7 @@ export const categories: ComponentCategory[] = [
     description: "Miscellaneous UI components",
     icon: Plus,
     href: "/components/others",
-    order: 7,
+    order: 5,
     maxColumns: 4,
     displayOptions: {
       layout: "grid",

@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ComponentCard } from "@/components/common/ComponentCard"; 
@@ -76,9 +75,7 @@ const ComponentsPage = () => {
       forms: "lg:grid-cols-3",
       buttons: "lg:grid-cols-4",
       cards: "lg:grid-cols-4",
-      images: "lg:grid-cols-3",
       inputs: "lg:grid-cols-4",
-      loaders: "lg:grid-cols-4",
       others: "lg:grid-cols-4"
     };
 
