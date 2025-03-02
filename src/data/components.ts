@@ -307,6 +307,51 @@ export const components: Component[] = [
     status: "stable",
     docsUrl: "/docs/feedback-card"
   },
+  {
+    id: 36,
+    name: "Name Input",
+    category: "inputs",
+    description: "A modern floating label input field with smooth animations and focus states",
+    tags: ["input", "form", "floating label", "animated", "interactive"],
+    status: "stable",
+    docsUrl: "/docs/name-input"
+  },
+  {
+    id: 37,
+    name: "Animated Search Input",
+    category: "inputs",
+    description: "An animated search input that expands on click with smooth transitions and a clear button",
+    tags: ["input", "search", "animated", "interactive", "expandable", "transitions"],
+    status: "stable",
+    docsUrl: "/docs/animated-search-input",
+  },
+  {
+    id: 38,
+    name: "Phone Number Input",
+    category: "inputs",
+    description: "A modern phone number input with country selection, format validation, and interactive states",
+    tags: ["input", "phone", "validation", "animated", "interactive", "country-selector"],
+    status: "stable",
+    docsUrl: "/docs/phone-number-input",
+  },
+  {
+    id: 39,
+    name: "Email Auto Suggest",
+    category: "inputs",
+    description: "A modern email input with auto-suggestions, validation, and smooth animations",
+    tags: ["input", "form", "email", "animated", "interactive", "validation", "suggestions"],
+    status: "stable",
+    docsUrl: "/docs/email-auto-suggest"
+  },
+  {
+    id: 40,
+    name: "Number Code Check",
+    category: "inputs",
+    description: "A modern verification code input with auto-focus, validation, timer, and smooth animations",
+    tags: ["input", "verification", "code", "animated", "interactive", "validation", "timer"],
+    status: "stable",
+    docsUrl: "/docs/number-code-check"
+  },
 ];
 
 export const getComponentsByCategory = (categoryId: string): Component[] => {

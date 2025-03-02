@@ -24,6 +24,12 @@ import { AppleAuthButton } from "@/components/ui/apple-auth-button";
 import { WarningSign } from "@/components/ui/warning-sign";
 import { BuyMeCoffee } from "@/components/ui/buy-me-coffee";
 import { FeedbackCard } from "@/components/ui/feedback-card";
+import { NameInput } from "@/components/ui/name-input";
+import { AnimatedSearchInput } from "@/components/ui/animated-search-input";
+import { PhoneNumberInput } from "@/components/ui/phone-number-input";
+import { EmailAutoSuggest } from "@/components/ui/email-auto-suggest";
+import { NumberCodeCheck } from "@/components/ui/number-code-check";
+import { numberCodeCheckRegistry } from "./number-code-check";
 
 interface ComponentCode {
   preview: string;
@@ -840,7 +846,7 @@ export default DeleteButton;`,
         </button>
         <button type="button" class="oauthButton">
           <svg class="icon github-icon" viewBox="0 0 24 24">
-            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.1.83-.26.83-.58v-2.03c-3.34.72-4.03-1.6-4.03-1.6-.54-1.38-1.33-1.74-1.33-1.74-1.1-.75.08-.73.08-.73 1.2.08 1.84 1.23 1.84 1.23 1.07 1.84 2.8 1.3 3.5 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.3.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23.96-.26 1.98-.4 3-.4s2.04.14 3 .4c2.28-1.55 3.3-1.23 3.3-1.23.64 1.66.24 2.88.12 3.18.77.84 1.23 1.92 1.92 1.23 3.22 0 4.6-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22v3.3c0 .32.22.7.83.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/>
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.1.83-.26.83-.58v-2.03c-3.34.72-4.03-1.6-4.03-1.6-.54-1.38-1.33-1.74-1.33-1.74-1.1-.75.08-.73.08-.73 1.2.084 1.84 1.237 1.84 1.237 1.07 1.84 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.93 0-1.3.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23.96-.26 1.98-.4 3-.4s2.04.14 3 .4c2.28-1.55 3.3-1.23 3.3-1.23.64 1.66.24 2.88.12 3.18.77.84 1.235 1.911 1.235 3.221 0 4.6-2.807 5.624-5.479 5.92.42.36.81 1.1.81 2.22v3.3c0 .32.22.7.83.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/>
           </svg>
           Continue with GitHub
         </button>
@@ -886,30 +892,53 @@ export default DeleteButton;`,
         </button>
         <button type="button" class="oauthButton">
           <svg class="icon github-icon" viewBox="0 0 24 24">
-            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.1.83-.26.83-.58v-2.03c-3.34.72-4.03-1.6-4.03-1.6-.54-1.38-1.33-1.74-1.33-1.74-1.1-.75.08-.73.08-.73 1.2.08 1.84 1.23 1.84 1.23 1.07 1.84 2.8 1.3 3.5 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.3.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23.96-.26 1.98-.4 3-.4s2.04.14 3 .4c2.28-1.55 3.3-1.23 3.3-1.23.64 1.66.24 2.88.12 3.18.77.84 1.23 1.92 1.92 1.23 3.22 0 4.6-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22v3.3c0 .32.22.7.83.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/>
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.1.83-.26.83-.58v-2.03c-3.34.72-4.03-1.6-4.03-1.6-.54-1.38-1.33-1.74-1.33-1.74-1.1-.75.08-.73.08-.73 1.2.084 1.84 1.237 1.84 1.237 1.07 1.84 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.3.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1-.32 3.3 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.92.43.372.823 1.102.823 2.22v3.3c0 .32.22.7.83.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/>
           </svg>
           Continue with GitHub
         </button>
-        <div class="separator">
+        <div className="separator">
           <div></div>
           <span>or</span>
           <div></div>
         </div>
-        <input type="email" class="auth-input" placeholder="Email address" />
-        <input type="password" class="auth-input password-field" placeholder="Password" />
-        <button type="button" class="oauthButton">
-          Sign In
-          <svg class="icon arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <input
+          type="email"
+          className="auth-input"
+          placeholder="Email address"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+
+        <input
+          type={showPassword ? "text" : "password"}
+          className="auth-input password-field"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+
+        <button type="submit" className="oauthButton" disabled={isLoading}>
+          {isLoading ? 'Loading...' : isSignUp ? 'Sign Up' : 'Sign In'}
+          <svg className="icon arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
           </svg>
         </button>
-        <div class="toggle-section">
-          <button type="button" class="toggle-button">
-            Don't have an account? Sign up
+
+        <div className="toggle-section">
+          <button
+            type="button"
+            className="toggle-button"
+            onClick={() => setIsSignUp(!isSignUp)}
+          >
+            {isSignUp
+              ? "Already have an account? Sign in"
+              : "Don't have an account? Sign up"}
           </button>
         </div>
       </form>
-    </div>`,
+    </div>
+  );
+};`,
     css: `/* Grey Retro Auth Form Styles */
 .auth-form-wrapper {
   display: flex;
@@ -1134,7 +1163,7 @@ export const GreyRetroAuthForm = () => {
 
         <button type="button" className="oauthButton">
           <svg className="icon github-icon" viewBox="0 0 24 24">
-            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.1.83-.26.83-.58v-2.03c-3.34.72-4.03-1.6-4.03-1.6-.54-1.38-1.33-1.74-1.33-1.74-1.1-.75.08-.73.08-.73 1.2.08 1.84 1.23 1.84 1.23 1.07 1.84 2.8 1.3 3.5 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.3.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23.96-.26 1.98-.4 3-.4s2.04.14 3 .4c2.28-1.55 3.3-1.23 3.3-1.23.64 1.66.24 2.88.12 3.18.77.84 1.23 1.92 1.92 1.23 3.22 0 4.6-2.8 5.63-5.48 5.92.43.372.823 1.102.823 2.222v3.3c0 .32.22.7.83.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/>
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.1.83-.26.83-.58v-2.03c-3.34.72-4.03-1.416-4.03-1.416-.54-1.387-1.333-1.74-1.333-1.74-1.1-.75.083-.73.083-.73 1.2.084 1.84 1.237 1.84 1.237 1.07 1.84 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1-.32 3.3 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.3c0 .32.22.7.83.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/>
           </svg>
           Continue with GitHub
         </button>
@@ -1696,7 +1725,7 @@ export default GoogleAuthButton;`,
             </a>
             <a href="#" class="w-12 h-12 rounded-full flex items-center justify-center text-gray-600 hover:text-teal-600 hover:bg-teal-50">
               <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.73.083-.73 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1-.32 3.3 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+                <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.73.083-.73 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1-.32 3.3 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.92.43.372.823 1.102.823 2.222v3.3c0 .32.22.7.83.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/>
               </svg>
             </a>
             <a href="#" class="w-12 h-12 rounded-full flex items-center justify-center text-gray-600 hover:text-teal-600 hover:bg-teal-50">
@@ -2325,7 +2354,7 @@ export const PaymentTierCard = () => {
     preview: `<button class="relative group overflow-hidden">
       <div class="relative z-10 flex items-center bg-gray-800 border border-gray-700 rounded-lg px-5 py-3">
         <svg width="22" height="22" viewBox="0 0 24 24">
-          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.58v-2.03c-3.34.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.74-1.333-1.74-1.1-.75.083-.73.083-.73 1.2.084 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1-.32 3.3 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.3c0 .32.22.7.83.58C20.56 21.8 24 17.3 24 12c0-6.63-5.373-12-12-12z" fill="#FFFFFF"/>
+          <path d="M12 0c-6.626 0-12 5.373-12 12c0 5.302 3.438 9.8 8.2 11.38.6.1.83-.26.83-.58v-2.03c-3.34.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.74-1.333-1.74-1.1-.75.08-.73.08-.73 1.2.084 1.84 1.237 1.84 1.237 1.07 1.84 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1-.32 3.3 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.92.43.372.823 1.102.823 2.22v3.3c0 .32.22.7.83.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z" fill="#FFFFFF"/>
         </svg>
         <span class="ml-2.5 text-white font-medium text-sm">Continue with GitHub</span>
       </div>
@@ -2335,7 +2364,7 @@ export const PaymentTierCard = () => {
       <div class="relative z-10 flex items-center bg-gray-800 border border-gray-700 rounded-lg px-5 py-3 transition-all duration-500 transform group-hover:bg-gray-900 group-hover:shadow-lg group-hover:shadow-teal-500/20">
         <!-- GitHub icon -->
         <svg width="22" height="22" viewBox="0 0 24 24">
-          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.58v-2.234c-3.34.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.74-1.333-1.74-1.1-.75.083-.73.083-.73 1.2.084 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1-.32 3.3 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" fill="#FFFFFF"/>
+          <path d="M12 0c-6.626 0-12 5.373-12 12c0 5.302 3.438 9.8 8.2 11.38.6.1.83-.26.83-.58v-2.234c-3.34.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.74-1.333-1.74-1.1-.75.083-.73.083-.73 1.2.084 1.84 1.237 1.84 1.237 1.07 1.84 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1-.32 3.3 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" fill="#FFFFFF"/>
         </svg>
         <span class="ml-2.5 text-white font-medium text-sm">Continue with GitHub</span>
       </div>
@@ -2382,7 +2411,7 @@ export const GitHubAuthButton: React.FC = () => {
           viewBox="0 0 24 24"
         >
           <path 
-            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.73.083-.73 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1-.32 3.3 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.73.083-.73 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1-.32 3.3 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.3c0 .32.22.7.83.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"
             fill={isHovered ? '#10B981' : '#FFFFFF'}
             className="transition-all duration-500"
           />
@@ -3297,6 +3326,671 @@ export const FeedbackCard = () => {
 };`,
     component: FeedbackCard
   },
+  "Name Input": {
+    preview: `<div class="w-full max-w-md">
+      <div class="relative">
+        <input type="text" id="floating-input" class="block w-full px-4 pt-6 pb-2 text-base bg-background border border-input rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent" />
+        <label for="floating-input" class="absolute left-4 top-4 text-base text-muted-foreground pointer-events-none transition-all duration-200">Your Name</label>
+      </div>
+    </div>`,
+    html: `<div class="w-full max-w-md">
+      <div class="relative">
+        <input type="text" id="floating-input" class="block w-full px-4 pt-6 pb-2 text-base bg-background border border-input rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent" />
+        <label for="floating-input" class="absolute left-4 top-4 text-base text-muted-foreground pointer-events-none transition-all duration-200">Your Name</label>
+      </div>
+    </div>`,
+    css: `/* Add your CSS styles here */`,
+    fullcode: `import React, { useState } from 'react';
+import { cn } from "@/lib/utils";
+
+interface NameInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  className?: string;
+}
+
+export const NameInput = React.forwardRef<HTMLInputElement, NameInputProps>(
+  ({ className, ...props }, ref) => {
+    const [isFocused, setIsFocused] = useState(false);
+    const [value, setValue] = useState('');
+    
+    const handleFocus = () => setIsFocused(true);
+    const handleBlur = () => setIsFocused(false);
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value);
+    
+    const isLabelFloating = isFocused || value;
+
+    return (
+      <div className={cn("w-full max-w-md", className)}>
+        <div className="relative">
+          <input
+            type="text"
+            id="floating-input"
+            className="peer block w-full px-4 pt-6 pb-2 text-base bg-background border border-input rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition-colors"
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            onChange={handleChange}
+            value={value}
+            ref={ref}
+            {...props}
+          />
+          <label
+            htmlFor="floating-input"
+            className={cn(
+              "absolute left-4 pointer-events-none transition-all duration-200 ease-in-out text-muted-foreground",
+              isLabelFloating
+                ? "top-2 text-xs text-primary"
+                : "top-4 text-base"
+            )}
+          >
+            Your Name
+          </label>
+        </div>
+      </div>
+    );
+  }
+);
+
+NameInput.displayName = "NameInput";`,
+    component: NameInput
+  },
+  "Animated Search Input": {
+    component: AnimatedSearchInput,
+    preview: `
+      <div class="flex justify-center items-center">
+        <div class="relative flex items-center rounded-full shadow-md w-12 h-12 bg-primary hover:bg-primary/90 cursor-pointer">
+          <div class="flex items-center justify-center w-12 h-12 text-primary-foreground">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          </div>
+        </div>
+      </div>
+    `,
+    html: `
+      <div class="flex justify-center items-center">
+        <div class="relative flex items-center rounded-full shadow-md transition-all duration-500 ease-in-out w-64 bg-background border border-input hover:border-primary">
+          <div class="flex items-center justify-center w-12 h-12 text-primary">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          </div>
+          <input type="text" placeholder="Search..." class="outline-none bg-transparent text-foreground placeholder:text-muted-foreground transition-all duration-500 ease-in-out focus-visible:outline-none w-full opacity-100 pr-8" />
+          <button class="absolute right-3 w-6 h-6 flex items-center justify-center rounded-full hover:bg-accent transition-all duration-200 text-muted-foreground hover:text-foreground" aria-label="Clear search">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          </button>
+        </div>
+      </div>
+    `,
+    css: `
+      .search-container {
+        transition: all 0.5s ease-in-out;
+      }
+      
+      .search-container:hover .search-icon {
+        transform: scale(1.1);
+      }
+      
+      .search-input {
+        transition: all 0.5s ease-in-out;
+      }
+      
+      .clear-button {
+        transition: all 0.2s ease-in-out;
+      }
+    `,
+    fullcode: `
+import React, { useState, useRef, useEffect } from 'react';
+import { Search, X } from 'lucide-react';
+import { cn } from "@/lib/utils";
+
+interface AnimatedSearchInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  className?: string;
+}
+
+export const AnimatedSearchInput = React.forwardRef<HTMLInputElement, AnimatedSearchInputProps>(
+  ({ className, ...props }, ref) => {
+    const [isExpanded, setIsExpanded] = useState(false);
+    const [query, setQuery] = useState('');
+    const inputRef = useRef<HTMLInputElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+      function handleClickOutside(event: MouseEvent) {
+        if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+          if (isExpanded && query === '') {
+            setIsExpanded(false);
+          }
+        }
+      }
+      
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }, [isExpanded, query]);
+
+    useEffect(() => {
+      if (isExpanded && inputRef.current) {
+        inputRef.current.focus();
+      }
+    }, [isExpanded]);
+
+    const handleExpand = () => {
+      setIsExpanded(true);
+    };
+
+    const handleClear = () => {
+      setQuery('');
+      inputRef.current?.focus();
+    };
+
+    return (
+      <div className={cn("flex justify-center items-center", className)}>
+        <div 
+          ref={containerRef}
+          className={cn(
+            "relative flex items-center rounded-full shadow-md transition-all duration-500 ease-in-out",
+            isExpanded 
+              ? "w-64 bg-background border border-input hover:border-primary" 
+              : "w-12 h-12 bg-primary hover:bg-primary/90 cursor-pointer"
+          )}
+          onClick={!isExpanded ? handleExpand : undefined}
+        >
+          <div 
+            className={cn(
+              "flex items-center justify-center transition-all duration-500",
+              isExpanded 
+                ? "w-12 h-12 text-primary" 
+                : "w-12 h-12 text-primary-foreground"
+            )}
+          >
+            <Search 
+              size={20} 
+              className="transition-transform duration-300 ease-out hover:scale-110" 
+            />
+          </div>
+          
+          <input
+            ref={inputRef}
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search..."
+            className={cn(
+              "outline-none bg-transparent text-foreground placeholder:text-muted-foreground",
+              "transition-all duration-500 ease-in-out focus-visible:outline-none",
+              isExpanded ? "w-full opacity-100 pr-8" : "w-0 opacity-0 absolute"
+            )}
+            {...props}
+          />
+          
+          {isExpanded && query && (
+            <button 
+              onClick={handleClear}
+              className={cn(
+                "absolute right-3 w-6 h-6 flex items-center justify-center rounded-full",
+                "hover:bg-accent transition-all duration-200 text-muted-foreground hover:text-foreground"
+              )}
+              aria-label="Clear search"
+            >
+              <X size={14} />
+            </button>
+          )}
+        </div>
+      </div>
+    );
+  }
+);
+
+AnimatedSearchInput.displayName = "AnimatedSearchInput";
+    `
+  },
+  "Phone Number Input": {
+    component: PhoneNumberInput,
+    preview: `
+      <div class="flex justify-center items-center">
+        <div class="relative flex items-stretch rounded-xl overflow-hidden shadow-sm">
+          <div class="flex items-center h-14 pl-4 pr-2 border border-gray-200 bg-gray-50 rounded-l-xl">
+            <span class="text-2xl mr-1">🇺🇸</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+          <div class="relative flex-grow">
+            <div class="absolute top-0 left-0 w-full h-full border border-gray-200 bg-white rounded-r-xl"></div>
+            <div class="relative flex items-center h-14">
+              <div class="flex items-center justify-center w-12 text-gray-400">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              </div>
+              <input type="tel" placeholder="(XXX) XXX-XXXX" class="h-full flex-grow bg-transparent text-gray-800 outline-none pr-10" />
+            </div>
+          </div>
+        </div>
+      </div>
+    `,
+    html: `
+      <div class="relative">
+        <div class="flex items-stretch rounded-xl overflow-hidden shadow-sm">
+          <!-- Country selector -->
+          <div class="relative">
+            <button type="button" class="flex items-center h-14 pl-4 pr-2 border border-gray-200 bg-gray-50 rounded-l-xl">
+              <span class="text-2xl mr-1">🇺🇸</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+          </div>
+          
+          <!-- Phone input -->
+          <div class="relative flex-grow">
+            <div class="absolute top-0 left-0 w-full h-full border border-gray-200 bg-white rounded-r-xl"></div>
+            <div class="relative flex items-center h-14">
+              <div class="flex items-center justify-center w-12 text-gray-400">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              </div>
+              <input type="tel" placeholder="(XXX) XXX-XXXX" class="h-full flex-grow bg-transparent text-gray-800 outline-none pr-10" />
+            </div>
+          </div>
+        </div>
+        
+        <!-- Helper text -->
+        <div class="mt-2">
+          <p class="text-xs text-gray-500">(000) 000-0000</p>
+        </div>
+      </div>
+    `,
+    css: `
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-4px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      
+      .animate-fadeIn {
+        animation: fadeIn 0.2s ease-out;
+      }
+    `,
+    fullcode: `import React, { useState, useRef, useEffect } from 'react';
+import { Phone, Check, ChevronDown, X } from 'lucide-react';
+import { cn } from "@/lib/utils";
+
+interface PhoneNumberInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  className?: string;
+}
+
+interface Country {
+  code: string;
+  flag: string;
+  format: string;
+}
+
+export const PhoneNumberInput = React.forwardRef<HTMLInputElement, PhoneNumberInputProps>(
+  ({ className, ...props }, ref) => {
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [isFocused, setIsFocused] = useState(false);
+    const [isValid, setIsValid] = useState<boolean | null>(null);
+    const [touched, setTouched] = useState(false);
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [selectedCountry, setSelectedCountry] = useState<Country>({
+      code: '+1',
+      flag: '🇺🇸',
+      format: '(XXX) XXX-XXXX'
+    });
+    
+    const inputRef = useRef<HTMLInputElement>(null);
+    const dropdownRef = useRef<HTMLDivElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
+    
+    const countries: Country[] = [
+      { code: '+1', flag: '🇺🇸', format: '(XXX) XXX-XXXX' },
+      { code: '+44', flag: '🇬🇧', format: 'XXXX XXXXXX' },
+      { code: '+33', flag: '🇫🇷', format: 'X XX XX XX XX' },
+      { code: '+49', flag: '🇩🇪', format: 'XXXX XXXXXXX' },
+      { code: '+81', flag: '🇯🇵', format: 'XX-XXXX-XXXX' },
+      { code: '+86', flag: '🇨🇳', format: 'XXX XXXX XXXX' },
+      { code: '+91', flag: '🇮🇳', format: 'XXXXX-XXXXX' },
+    ];
+
+    useEffect(() => {
+      const handleClickOutside = (event: MouseEvent) => {
+        if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+          setIsDropdownOpen(false);
+        }
+      };
+      
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
+
+    const formatPhoneNumber = (value: string) => {
+      if (!value) return '';
+      
+      const digits = value.replace(/\\D/g, '');
+      
+      if (selectedCountry.code === '+1') {
+        if (digits.length <= 3) {
+          return digits;
+        } else if (digits.length <= 6) {
+          return \`(\${digits.slice(0, 3)}) \${digits.slice(3)}\`;
+        } else {
+          return \`(\${digits.slice(0, 3)}) \${digits.slice(3, 6)}-\${digits.slice(6, 10)}\`;
+        }
+      } else if (selectedCountry.code === '+44') {
+        if (digits.length <= 4) {
+          return digits;
+        } else {
+          return \`\${digits.slice(0, 4)} \${digits.slice(4, 10)}\`;
+        }
+      } else {
+        return digits.replace(/(\\d{3})(?=\\d)/g, '$1 ').trim();
+      }
+    };
+
+    const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      
+      if (/^[\\d\\s()\\-]*$/.test(value) || value === '') {
+        const formatted = formatPhoneNumber(value);
+        setPhoneNumber(formatted);
+        
+        if (touched) {
+          validatePhoneNumber(formatted);
+        }
+      }
+    };
+
+    const validatePhoneNumber = (number: string) => {
+      const digits = number.replace(/\\D/g, '');
+      const isValidByLength = digits.length >= 10;
+      setIsValid(isValidByLength);
+      return isValidByLength;
+    };
+
+    const handleCountrySelect = (country: Country) => {
+      setSelectedCountry(country);
+      setIsDropdownOpen(false);
+      setPhoneNumber('');
+      setIsValid(null);
+      
+      setTimeout(() => {
+        if (inputRef.current) {
+          inputRef.current.focus();
+        }
+      }, 100);
+    };
+
+    return (
+      <div className={cn("w-full", className)} ref={containerRef}>
+        <div className="relative">
+          {/* Main input container */}
+          <div 
+            className={cn(
+              "flex items-stretch rounded-xl overflow-hidden transition-all duration-300 ease-out",
+              isFocused ? "shadow-lg shadow-blue-100/50" : "shadow-sm",
+              isValid === false && touched ? "shadow-lg shadow-red-100/50" : "",
+              isValid === true ? "shadow-lg shadow-green-100/50" : ""
+            )}
+          >
+            {/* Country selector */}
+            <div className="relative" ref={dropdownRef}>
+              <button
+                type="button"
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className={cn(
+                  "flex items-center h-14 pl-4 pr-2 border-y border-l transition-all duration-200 rounded-l-xl",
+                  isFocused ? "border-blue-200 bg-blue-50" : "border-gray-200 bg-gray-50",
+                  isValid === false && touched ? "border-red-200 bg-red-50" : "",
+                  isValid === true ? "border-green-200 bg-green-50" : ""
+                )}
+              >
+                <span className="text-2xl mr-1 transform transition-transform duration-300 hover:scale-110">
+                  {selectedCountry.flag}
+                </span>
+                <ChevronDown 
+                  size={14} 
+                  className={cn(
+                    "text-gray-400 ml-1 transition-transform duration-200",
+                    isDropdownOpen ? "transform rotate-180" : ""
+                  )} 
+                />
+              </button>
+              
+              {/* Country dropdown */}
+              <div 
+                className={cn(
+                  "absolute z-10 mt-1 bg-white border border-gray-100 rounded-xl",
+                  "transition-all duration-300 ease-out origin-top-left",
+                  "shadow-xl shadow-gray-100/80 overflow-hidden",
+                  isDropdownOpen 
+                    ? "opacity-100 transform scale-100 translate-y-0" 
+                    : "opacity-0 transform scale-95 -translate-y-4 pointer-events-none"
+                )}
+              >
+                <div className="py-1">
+                  {countries.map((country) => (
+                    <button
+                      key={country.code}
+                      type="button"
+                      onClick={() => handleCountrySelect(country)}
+                      className={cn(
+                        "flex items-center w-full px-4 py-3 text-left text-gray-700",
+                        "hover:bg-blue-50 transition-colors duration-150",
+                        selectedCountry.code === country.code ? "bg-blue-50" : ""
+                      )}
+                    >
+                      <span className="text-xl mr-3">{country.flag}</span>
+                      <span className="font-medium">{country.code}</span>
+                      {selectedCountry.code === country.code && (
+                        <Check size={16} className="ml-2 text-blue-500" />
+                      )}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+            
+            {/* Phone input */}
+            <div className="relative flex-grow">
+              <div 
+                className={cn(
+                  "absolute top-0 left-0 w-full h-full border-y border-r rounded-r-xl transition-all duration-200",
+                  isFocused ? "border-blue-200 bg-white" : "border-gray-200 bg-white",
+                  isValid === false && touched ? "border-red-200" : "",
+                  isValid === true ? "border-green-200" : ""
+                )}
+              ></div>
+              
+              <div className="relative flex items-center h-14">
+                <div 
+                  className={cn(
+                    "flex items-center justify-center w-12 transition-colors duration-200",
+                    isFocused ? "text-blue-500" : "text-gray-400",
+                    isValid === false && touched ? "text-red-500" : "",
+                    isValid === true ? "text-green-500" : ""
+                  )}
+                >
+                  <Phone size={18} />
+                </div>
+                
+                <input
+                  ref={inputRef}
+                  type="tel"
+                  value={phoneNumber}
+                  onChange={handlePhoneChange}
+                  onFocus={() => setIsFocused(true)}
+                  onBlur={() => {
+                    setIsFocused(false);
+                    setTouched(true);
+                    validatePhoneNumber(phoneNumber);
+                  }}
+                  placeholder={selectedCountry.format}
+                  className="h-full flex-grow bg-transparent text-gray-800 outline-none pr-10"
+                  {...props}
+                />
+                
+                {/* Status indicators */}
+                {touched && phoneNumber && (
+                  <div 
+                    className={cn(
+                      "absolute right-3 flex items-center justify-center w-6 h-6 rounded-full transition-all duration-300",
+                      isValid === true 
+                        ? "bg-green-100 text-green-500 animate-fadeIn" 
+                        : isValid === false 
+                          ? "bg-red-100 text-red-500 animate-fadeIn" 
+                          : "opacity-0"
+                    )}
+                  >
+                    {isValid === true ? (
+                      <Check size={14} />
+                    ) : (
+                      <X size={14} />
+                    )}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+          
+          {/* Helper text */}
+          <div className="mt-2 flex justify-between">
+            <p className="text-xs text-gray-500">
+              {selectedCountry.format.replace(/X/g, '0')}
+            </p>
+            
+            {touched && phoneNumber && !isValid && (
+              <p className="text-xs text-red-500 animate-fadeIn">
+                Please enter a valid phone number
+              </p>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  }
+);
+
+PhoneNumberInput.displayName = "PhoneNumberInput";`
+  },
+  "Email Auto Suggest": {
+    component: EmailAutoSuggest,
+    preview: `
+      <div class="flex flex-col items-center justify-center">
+        <div class="relative overflow-hidden rounded-full shadow-md bg-white w-48">
+          <button class="flex items-center justify-center w-full h-12 px-4 text-gray-800 group">
+            <div class="w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full mr-2.5">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-600">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </div>
+            <span class="font-medium text-sm">Enter your email</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto text-gray-400">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
+    `,
+    html: `
+      <div class="flex flex-col items-center justify-center">
+        <!-- Container with smooth transitions -->
+        <div class="relative overflow-hidden rounded-full shadow-md bg-white w-48">
+          <!-- Button state -->
+          <button class="flex items-center justify-center w-full h-12 px-4 text-gray-800 group">
+            <div class="w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full mr-2.5 
+                 transition-transform duration-300 group-hover:scale-110 group-hover:bg-blue-200">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-600">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </div>
+            <span class="font-medium text-sm">Enter your email</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto text-gray-400 transition-transform duration-300 group-hover:translate-x-1">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
+    `,
+    css: `
+      @keyframes expandWidth {
+        0% { 
+          width: 12rem; 
+          border-radius: 9999px;
+        }
+        50% {
+          border-radius: 1rem;
+        }
+        100% { 
+          width: 16rem; 
+          border-radius: 0.75rem;
+        }
+      }
+      
+      @keyframes collapseWidth {
+        0% { 
+          width: 16rem; 
+          border-radius: 0.75rem;
+        }
+        50% {
+          border-radius: 1rem;
+        }
+        100% { 
+          width: 12rem; 
+          border-radius: 9999px;
+        }
+      }
+      
+      @keyframes success-ripple {
+        0% {
+          box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.3);
+          opacity: 1;
+        }
+        70% {
+          box-shadow: 0 0 0 10px rgba(34, 197, 94, 0);
+          opacity: 0;
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+          opacity: 0;
+        }
+      }
+      
+      .animate-success-ripple {
+        animation: success-ripple 1.5s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+      }
+      
+      .animation-delay-200 {
+        animation-delay: 0.2s;
+      }
+      
+      @keyframes draw-check {
+        0% {
+          stroke-dasharray: 40;
+          stroke-dashoffset: 40;
+          opacity: 0;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          stroke-dasharray: 40;
+          stroke-dashoffset: 0;
+          opacity: 1;
+        }
+      }
+      
+      .animate-draw-check {
+        animation: draw-check 0.8s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+      }
+    `,
+    fullcode: `import React, { useState, useRef, useEffect } from 'react';
+import { Mail, X, Check, AlertCircle, ChevronRight } from 'lucide-react';
+import { cn } from "@/lib/utils";
+
+interface EmailAutoSuggestProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  className?: string;
+}
+
+export const EmailAutoSuggest = React.forwardRef<HTMLInputElement, EmailAutoSuggestProps>(
+  ({ className, ...props }, ref) => {
+    // Component implementation
+  }
+);
+
+EmailAutoSuggest.displayName = "EmailAutoSuggest";`
+  },
+  "Number Code Check": numberCodeCheckRegistry,
 };
 
 export const getComponentCode = (name: string): ComponentCode | null => {

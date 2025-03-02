@@ -26,6 +26,11 @@ import { AddToCartButton } from "@/components/ui/add-to-cart-button";
 import { AppleAuthButton } from "@/components/ui/apple-auth-button";
 import { BuyMeCoffee } from "@/components/ui/buy-me-coffee";
 import { FeedbackCard } from "@/components/ui/feedback-card";
+import { NameInput } from "@/components/ui/name-input";
+import { AnimatedSearchInput } from "@/components/ui/animated-search-input";
+import { PhoneNumberInput } from "@/components/ui/phone-number-input";
+import { EmailAutoSuggest } from "@/components/ui/email-auto-suggest";
+import { NumberCodeCheck } from "@/components/ui/number-code-check";
 
 interface ComponentCardProps {
   component: Component;
@@ -104,6 +109,46 @@ export const ComponentCard = ({ component, index, layout = "grid", categoryId = 
       return (
         <div className="flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
           <FeedbackCard />
+        </div>
+      );
+    }
+
+    if (name === "Name Input") {
+      return (
+        <div className="flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
+          <NameInput />
+        </div>
+      );
+    }
+
+    if (name === "Animated Search Input") {
+      return (
+        <div className="flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
+          <AnimatedSearchInput />
+        </div>
+      );
+    }
+
+    if (name === "Phone Number Input") {
+      return (
+        <div className="flex items-center justify-center w-full max-w-md px-4" onClick={(e) => e.stopPropagation()}>
+          <PhoneNumberInput />
+        </div>
+      );
+    }
+
+    if (name === "Email Auto Suggest") {
+      return (
+        <div className="flex items-center justify-center w-full" onClick={(e) => e.stopPropagation()}>
+          <EmailAutoSuggest className="w-full max-w-xs" />
+        </div>
+      );
+    }
+
+    if (name === "Number Code Check") {
+      return (
+        <div className="flex items-center justify-center w-full" onClick={(e) => e.stopPropagation()}>
+          <NumberCodeCheck className="w-full max-w-xs" />
         </div>
       );
     }
@@ -235,7 +280,9 @@ export const ComponentCard = ({ component, index, layout = "grid", categoryId = 
                 ? "min-h-[300px]" 
                 : component.category === "cards"
                   ? "h-[320px]"  
-                  : "h-32"
+                  : component.category === "inputs"
+                    ? "h-56 min-w-[280px]"
+                    : "h-32"
             } bg-muted rounded-md flex items-center justify-center`}>
               <ComponentPreview name={component.name} />
             </div>
