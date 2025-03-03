@@ -11,15 +11,6 @@ export const components: Component[] = [
     docsUrl: "/docs/lavender-auth-form"
   },
   { 
-    id: 2, 
-    name: "Card", 
-    category: "surfaces", 
-    description: "Versatile card component for content",
-    tags: ["container", "surface", "layout"],
-    status: "stable",
-    docsUrl: "/docs/card"
-  },
-  { 
     id: 3, 
     name: "Grey Retro Auth Form", 
     category: "forms", 
@@ -29,15 +20,6 @@ export const components: Component[] = [
     docsUrl: "/docs/grey-retro-auth-form"
   },
   { 
-    id: 4, 
-    name: "Dropdown", 
-    category: "navigation", 
-    description: "Dropdown menu with customizable options",
-    tags: ["menu", "select", "options"],
-    status: "stable",
-    docsUrl: "/docs/dropdown"
-  },
-  { 
     id: 5, 
     name: "Cyber Punk Auth Form",
     category: "forms",
@@ -45,60 +27,6 @@ export const components: Component[] = [
     tags: ["form", "auth", "cyberpunk", "animated", "social", "game"],
     status: "stable",
     docsUrl: "/docs/cyber-punk-auth-form"
-  },
-  { 
-    id: 6, 
-    name: "Tabs", 
-    category: "navigation", 
-    description: "Tab interface for organized content",
-    tags: ["navigation", "organize", "sections"],
-    status: "stable",
-    docsUrl: "/docs/tabs"
-  },
-  { 
-    id: 7, 
-    name: "Table", 
-    category: "data-display", 
-    description: "Data table with sorting and pagination",
-    tags: ["data", "grid", "display"],
-    status: "stable",
-    docsUrl: "/docs/table"
-  },
-  { 
-    id: 8, 
-    name: "Avatar", 
-    category: "data-display", 
-    description: "User avatar with various sizes",
-    tags: ["user", "profile", "image"],
-    status: "stable",
-    docsUrl: "/docs/avatar"
-  },
-  { 
-    id: 10, 
-    name: "Alert", 
-    category: "feedback", 
-    description: "Alert messages for notifications",
-    tags: ["notification", "message", "info"],
-    status: "stable",
-    docsUrl: "/docs/alert"
-  },
-  { 
-    id: 11, 
-    name: "Progress", 
-    category: "feedback", 
-    description: "Progress indicators and bars",
-    tags: ["loading", "status", "indicator"],
-    status: "stable",
-    docsUrl: "/docs/progress"
-  },
-  { 
-    id: 12, 
-    name: "Tooltip", 
-    category: "feedback", 
-    description: "Contextual tooltips for elements",
-    tags: ["info", "hover", "help"],
-    status: "stable",
-    docsUrl: "/docs/tooltip"
   },
   { 
     id: 13, 
@@ -352,6 +280,150 @@ export const components: Component[] = [
     status: "stable",
     docsUrl: "/docs/number-code-check"
   },
+  {
+    id: 41,
+    name: "Credit Card Payment",
+    category: "cards",
+    description: "An interactive credit card input form with real-time validation, card brand detection, and smooth animations",
+    tags: ["card", "payment", "form", "interactive", "animated"],
+    status: "stable",
+    docsUrl: "/docs/credit-card-payment"
+  },
+  {
+    id: 42,
+    name: "Social Icons Animated",
+    category: "others",
+    description: "Interactive social media icons with smooth hover animations, ripple effects, and floating labels",
+    tags: ["social", "icons", "animated", "interactive", "hover", "ripple"],
+    status: "stable",
+    docsUrl: "/docs/social-icons-animated"
+  },
+  {
+    id: 43,
+    name: "Loading Animation",
+    category: "others",
+    description: "A modern iOS-style loading animation with circular progress indicator, pulsing effects, and success state",
+    tags: ["loading", "animation", "progress", "circular", "success", "interactive"],
+    status: "stable",
+    docsUrl: "/docs/loading-animation"
+  },
+  {
+    id: 44,
+    name: "Night/Day Toggle",
+    category: "others",
+    description: "An interactive day/night toggle switch with smooth animations, morphing effects, and detailed sun/moon visuals",
+    tags: ["toggle", "switch", "animation", "dark mode", "interactive", "theme"],
+    status: "stable",
+    docsUrl: "/docs/night-day-toggle"
+  },
+  {
+    id: 45,
+    name: "Basic Dropdown",
+    category: "others",
+    description: "A modern dropdown select component with smooth animations, hover effects, and checkmark indicators",
+    tags: ["dropdown", "select", "animation", "interactive", "form", "menu"],
+    status: "stable",
+    docsUrl: "/docs/basic-dropdown"
+  },
+  {
+    id: 46,
+    name: "Menu Popup Basic",
+    category: "others",
+    description: "An interactive popup menu with animated plus/x button, smooth transitions, and colorful menu items",
+    tags: ["menu", "popup", "animation", "interactive", "button", "navigation"],
+    status: "stable",
+    docsUrl: "/docs/menu-popup-basic"
+  },
+  {
+    id: 47,
+    name: "Feedback Card2",
+    category: "cards",
+    description: "An interactive feedback card with star rating system, text input, and animated submission process",
+    tags: ["card", "feedback", "rating", "stars", "form", "interactive", "animation"],
+    status: "stable",
+    docsUrl: "/docs/feedback-card2"
+  },
+  {
+    id: 48,
+    name: "Night/Day Toggle 2",
+    category: "others",
+    description: "An animated toggle switch with detailed sun and moon designs, smooth transitions, and interactive state changes",
+    tags: ["toggle", "switch", "dark mode", "light mode", "sun", "moon", "animation", "interactive"],
+    status: "stable",
+    docsUrl: "/docs/night-day-toggle2"
+  },
+  {
+    id: 49,
+    name: "Delete Account Card",
+    category: "cards",
+    description: "An interactive card for account deletion with hover effects, confirmation dialog, loading state, and success feedback",
+    tags: ["card", "delete", "account", "confirmation", "interactive", "animation", "hover", "loading"],
+    status: "stable",
+    docsUrl: "/docs/delete-account-card"
+  },
+  {
+    id: 50,
+    name: "Range Slider",
+    category: "others",
+    description: "An interactive range slider with animated striped fill, draggable thumb, tooltip, and keyboard accessibility",
+    tags: ["slider", "range", "input", "interactive", "animation", "accessibility", "draggable", "tooltip"],
+    status: "stable",
+    docsUrl: "/docs/range-slider"
+  },
+  {
+    id: 51,
+    name: "Notifications Popup",
+    category: "others",
+    description: "An expandable notifications popup with animated bell icon, unread indicators, and interactive notifications list",
+    tags: ["notifications", "popup", "dropdown", "bell", "animation", "interactive", "expandable", "hover"],
+    status: "stable",
+    docsUrl: "/docs/notifications-popup"
+  },
+  {
+    id: 52,
+    name: "Teal Auth Form",
+    category: "forms",
+    description: "A modern authentication form with teal accents, social login options, and smooth animations",
+    tags: ["form", "auth", "animated", "social", "teal", "gradient", "interactive"],
+    status: "stable",
+    docsUrl: "/docs/teal-auth-form"
+  },
+  {
+    id: 53,
+    name: "Minimal Auth Form",
+    category: "forms",
+    description: "A clean and minimal authentication form with smooth transitions and subtle animations",
+    tags: ["form", "auth", "minimal", "clean", "animated", "interactive"],
+    status: "stable",
+    docsUrl: "/docs/minimal-auth-form"
+  },
+  {
+    id: 54,
+    name: "IOS Styled Auth Form",
+    category: "forms",
+    description: "A modern iOS-styled authentication form with smooth transitions, native-like inputs, and social login options",
+    tags: ["form", "auth", "ios", "apple", "minimal", "clean", "animated", "social"],
+    status: "stable",
+    docsUrl: "/docs/ios-styled-auth-form"
+  },
+  {
+    id: 55,
+    name: "Newsletter Subscribe",
+    category: "inputs",
+    description: "A modern newsletter subscription input with email validation, loading states, success feedback, and smooth animations",
+    tags: ["input", "email", "newsletter", "subscribe", "animated", "validation", "feedback"],
+    status: "stable",
+    docsUrl: "/docs/newsletter-subscribe"
+  },
+  {
+    id: 56,
+    name: "Animated Checklist",
+    category: "others",
+    description: "An interactive checklist with smooth animations, Twitter-style checkmarks, strikethrough effects, and firework animations",
+    tags: ["checklist", "animated", "interactive", "twitter", "checkmark", "firework", "strikethrough"],
+    status: "stable",
+    docsUrl: "/docs/animated-checklist"
+  }
 ];
 
 export const getComponentsByCategory = (categoryId: string): Component[] => {

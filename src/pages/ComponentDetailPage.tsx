@@ -7,6 +7,7 @@ import { Copy, ArrowLeft } from "lucide-react";
 import { toast } from "sonner";
 import { getComponentById } from "@/data/components";
 import { getComponentCode } from "@/registry";
+import { getComponentCode as getComponentCode2 } from "@/registry/registry-2";
 import NotFoundPage from "./NotFoundPage";
 
 const ComponentDetailPage = () => {
@@ -15,7 +16,7 @@ const ComponentDetailPage = () => {
   const [activeTab, setActiveTab] = useState("html");
   
   const component = componentId ? getComponentById(parseInt(componentId)) : undefined;
-  const componentCode = component ? getComponentCode(component.name) : null;
+  const componentCode = component ? (getComponentCode(component.name) || getComponentCode2(component.name)) : null;
   
   if (!component || !componentCode) {
     return <NotFoundPage />;

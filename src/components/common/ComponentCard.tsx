@@ -21,7 +21,9 @@ import { GitHubAuthButton } from "@/components/ui/github-auth-button";
 import { XAuthButton } from "@/components/ui/x-auth-button";
 import { FacebookAuthButton } from "@/components/ui/facebook-auth-button";
 import { VioletAuthForm } from "@/components/ui/violet-auth-form";
+import { TealAuthForm } from "@/components/ui/teal-auth-form";
 import { getComponentCode } from "@/registry";
+import { getComponentCode as getComponentCode2 } from "@/registry/registry-2";
 import { AddToCartButton } from "@/components/ui/add-to-cart-button";
 import { AppleAuthButton } from "@/components/ui/apple-auth-button";
 import { BuyMeCoffee } from "@/components/ui/buy-me-coffee";
@@ -31,6 +33,20 @@ import { AnimatedSearchInput } from "@/components/ui/animated-search-input";
 import { PhoneNumberInput } from "@/components/ui/phone-number-input";
 import { EmailAutoSuggest } from "@/components/ui/email-auto-suggest";
 import { NumberCodeCheck } from "@/components/ui/number-code-check";
+import { SocialIconsAnimated } from "@/components/ui/social-icons-animated";
+import { LoadingAnimation } from "@/components/ui/loading-animation";
+import { DayNightToggle } from "@/components/ui/day-night-toggle";
+import { BasicDropdown } from "@/components/ui/basic-dropdown";
+import { MenuPopupBasic } from "@/components/ui/menu-popup-basic";
+import { FeedbackCard2 } from "@/components/ui/feedback-card2";
+import { NightDayToggle2 } from "@/components/ui/night-day-toggle2";
+import { DeleteAccountCard } from "@/components/ui/delete-account-card";
+import { RangeSlider } from "@/components/ui/range-slider";
+import { NotificationsPopup } from "@/components/ui/notifications-popup";
+import { MinimalAuthForm } from "@/components/ui/minimal-auth-form";
+import { IOSStyledAuthForm } from "@/components/ui/ios-styled-auth-form";
+import { NewsletterSubscribe } from "@/components/ui/newsletter-subscribe";
+import { AnimatedChecklist } from "@/components/ui/animated-checklist";
 
 interface ComponentCardProps {
   component: Component;
@@ -63,7 +79,7 @@ export const ComponentCard = ({ component, index, layout = "grid", categoryId = 
   };
 
   const ComponentPreview = ({ name }: { name: string }) => {
-    const componentCode = getComponentCode(name);
+    const componentCode = getComponentCode(name) || getComponentCode2(name);
     
     if (!componentCode) {
       return <div>No preview available</div>;
@@ -93,6 +109,54 @@ export const ComponentCard = ({ component, index, layout = "grid", categoryId = 
       return (
         <div className="transform scale-[0.65]">
           <PaymentTierCard />
+        </div>
+      );
+    }
+
+    if (name === "Social Icons Animated") {
+      return (
+        <div className="transform scale-[0.75] -mt-1 -mb-1" onClick={(e) => e.stopPropagation()}>
+          <SocialIconsAnimated />
+        </div>
+      );
+    }
+
+    if (name === "Loading Animation") {
+      return (
+        <div className="transform scale-[0.75] -mt-1 -mb-1" onClick={(e) => e.stopPropagation()}>
+          <LoadingAnimation />
+        </div>
+      );
+    }
+
+    if (name === "Night/Day Toggle") {
+      return (
+        <div className="transform scale-[0.85] -mt-1 -mb-1" onClick={(e) => e.stopPropagation()}>
+          <DayNightToggle />
+        </div>
+      );
+    }
+
+    if (name === "Night/Day Toggle 2") {
+      return (
+        <div className="transform scale-[0.85] -mt-1 -mb-1" onClick={(e) => e.stopPropagation()}>
+          <NightDayToggle2 />
+        </div>
+      );
+    }
+
+    if (name === "Basic Dropdown") {
+      return (
+        <div className="transform scale-[0.85] -mt-1 -mb-1" onClick={(e) => e.stopPropagation()}>
+          <BasicDropdown />
+        </div>
+      );
+    }
+
+    if (name === "Menu Popup Basic") {
+      return (
+        <div className="transform scale-[0.85] -mt-1 -mb-1" onClick={(e) => e.stopPropagation()}>
+          <MenuPopupBasic />
         </div>
       );
     }
@@ -149,6 +213,24 @@ export const ComponentCard = ({ component, index, layout = "grid", categoryId = 
       return (
         <div className="flex items-center justify-center w-full" onClick={(e) => e.stopPropagation()}>
           <NumberCodeCheck className="w-full max-w-xs" />
+        </div>
+      );
+    }
+
+    if (name === "Teal Auth Form") {
+      return (
+        <div onClick={(e) => e.stopPropagation()} className="transform scale-[0.75] origin-top -mb-40">
+          <TealAuthForm />
+        </div>
+      );
+    }
+
+    if (name === "Minimal Auth Form") {
+      return (
+        <div onClick={(e) => e.stopPropagation()} className="flex items-center justify-center h-full">
+          <div className="transform scale-[0.85] w-[450px]">
+            <MinimalAuthForm />
+          </div>
         </div>
       );
     }
@@ -254,6 +336,64 @@ export const ComponentCard = ({ component, index, layout = "grid", categoryId = 
       );
     }
 
+    if (name === "Feedback Card2") {
+      return (
+        <div className="transform scale-[0.65]" onClick={(e) => e.stopPropagation()}>
+          <FeedbackCard2 />
+        </div>
+      );
+    }
+
+    if (name === "Delete Account Card") {
+      return (
+        <div className="transform scale-[0.65]" onClick={(e) => e.stopPropagation()}>
+          <DeleteAccountCard />
+        </div>
+      );
+    }
+
+    if (name === "Range Slider") {
+      return (
+        <div className="transform scale-[0.65] w-full max-w-[400px] -mt-2" onClick={(e) => e.stopPropagation()}>
+          <RangeSlider />
+        </div>
+      );
+    }
+
+    if (name === "Notifications Popup") {
+      return (
+        <div className="transform scale-[0.65] w-full max-w-[400px] -mt-2" onClick={(e) => e.stopPropagation()}>
+          <NotificationsPopup />
+        </div>
+      );
+    }
+
+    if (name === "IOS Styled Auth Form") {
+      return (
+        <div onClick={(e) => e.stopPropagation()} className="flex items-center justify-center h-full">
+          <div className="transform scale-[0.85] w-[450px]">
+            <IOSStyledAuthForm />
+          </div>
+        </div>
+      );
+    }
+
+    if (name === "Newsletter Subscribe") {
+      return (
+        <div onClick={(e) => e.stopPropagation()} className="transform scale-[0.85] w-full">
+          <NewsletterSubscribe />
+        </div>
+      );
+    }
+
+    if (name === "Animated Checklist") {
+      return (
+        <div className="transform scale-[0.85] -mt-1 -mb-1" onClick={(e) => e.stopPropagation()}>
+          <AnimatedChecklist />
+        </div>
+      );
+    }
+
     if (!componentCode.component) {
       return <div dangerouslySetInnerHTML={{ __html: componentCode.preview }} />;
     }
@@ -272,7 +412,7 @@ export const ComponentCard = ({ component, index, layout = "grid", categoryId = 
         <CardHeader>
           <CardTitle>{component.name}</CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className={component.category === "others" ? "pb-6" : ""}>
           <div className="relative">
             {/* Actual Component Preview */}
             <div className={`${
@@ -282,13 +422,17 @@ export const ComponentCard = ({ component, index, layout = "grid", categoryId = 
                   ? "h-[320px]"  
                   : component.category === "inputs"
                     ? "h-56 min-w-[280px]"
-                    : "h-32"
+                    : component.category === "others"
+                      ? "h-44"
+                      : "h-32"
             } bg-muted rounded-md flex items-center justify-center`}>
               <ComponentPreview name={component.name} />
             </div>
             
             {/* View Code button moved to bottom right */}
-            <div className="absolute bottom-2 right-2">
+            <div className={`absolute bottom-2 right-2 ${
+              component.name === "Social Icons Animated" || component.category === "others" ? "z-10" : ""
+            }`}>
               <Button 
                 variant="secondary" 
                 size="sm" 

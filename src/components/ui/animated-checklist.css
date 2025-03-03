@@ -1,0 +1,191 @@
+#checklist {
+  --background: #f8fafc;
+  --text: #1e293b;
+  --check: #1da1f2;
+  --check-hover: #0c85d0;
+  --disabled: #a0aec0;
+  --border-radius: 16px;
+  background: var(--background);
+  width: 100%;
+  max-width: 260px;
+  border-radius: var(--border-radius);
+  position: relative;
+  box-shadow: 0 12px 50px rgba(0, 0, 0, 0.06);
+  padding: 24px;
+  display: grid;
+  grid-template-columns: 30px auto;
+  align-items: center;
+  row-gap: 18px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+@media (max-width: 480px) {
+  #checklist {
+    max-width: 220px;
+    padding: 20px;
+    row-gap: 16px;
+  }
+}
+
+#checklist label {
+  color: var(--text);
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  transition: color 0.3s ease;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+#checklist label::before, #checklist label::after {
+  content: "";
+  position: absolute;
+}
+
+#checklist label::before {
+  height: 2px;
+  width: 8px;
+  left: -27px;
+  background: var(--check);
+  border-radius: 2px;
+  transition: background 0.3s ease;
+}
+
+#checklist label:after {
+  height: 4px;
+  width: 4px;
+  top: 8px;
+  left: -25px;
+  border-radius: 50%;
+}
+
+#checklist input[type="checkbox"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  position: relative;
+  height: 20px;
+  width: 20px;
+  outline: none;
+  border: 2px solid #d1d5db;
+  border-radius: 50%;
+  margin: 0 15px 0 0;
+  cursor: pointer;
+  background: var(--background);
+  display: grid;
+  align-items: center;
+  justify-self: center;
+  transition: all 0.2s cubic-bezier(0.05, 0.7, 0.1, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+#checklist input[type="checkbox"]:checked {
+  background: var(--check);
+  border-color: var(--check);
+  box-shadow: 0 0 0 2px rgba(29, 161, 242, 0.2);
+}
+
+#checklist input[type="checkbox"]:checked::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 6px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  animation: check-mark 0.3s cubic-bezier(0.05, 0.7, 0.1, 1) forwards;
+}
+
+#checklist input[type="checkbox"]::after {
+  display: none;
+}
+
+#checklist input[type="checkbox"]:checked + label {
+  color: var(--disabled);
+  animation: move 0.3s ease 0.1s forwards;
+}
+
+#checklist input[type="checkbox"]:checked + label::before {
+  background: var(--disabled);
+  animation: slice 0.4s ease forwards;
+}
+
+#checklist input[type="checkbox"]:checked + label::after {
+  animation: firework 0.5s ease forwards 0.1s;
+}
+
+#checklist input[type="checkbox"]:hover {
+  border-color: var(--check-hover);
+  transform: scale(1.05);
+}
+
+#checklist input[type="checkbox"]:checked:hover {
+  background: var(--check-hover);
+  border-color: var(--check-hover);
+}
+
+#checklist input[type="checkbox"] + label:hover {
+  color: #4a5568;
+  transition: color 0.3s ease;
+}
+
+@keyframes move {
+  50% {
+    padding-left: 8px;
+    padding-right: 0px;
+  }
+  100% {
+    padding-right: 4px;
+  }
+}
+
+@keyframes slice {
+  60% {
+    width: 90%;
+    left: 5%;
+    right: 5%;
+  }
+  100% {
+    width: 90%;
+    left: 5%;
+    right: 5%;
+    padding-left: 0;
+  }
+}
+
+@keyframes check-mark {
+  0% {
+    opacity: 0;
+    transform: rotate(45deg) scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: rotate(45deg) scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(45deg) scale(1);
+  }
+}
+
+@keyframes firework {
+  0% {
+    opacity: 1;
+    box-shadow: 0 0 0 -2px var(--check), 0 0 0 -2px var(--check), 0 0 0 -2px var(--check), 0 0 0 -2px var(--check), 0 0 0 -2px var(--check), 0 0 0 -2px var(--check);
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    box-shadow: 0 -15px 0 0px var(--check), 14px -8px 0 0px var(--check), 14px 8px 0 0px var(--check), 0 15px 0 0px var(--check), -14px 8px 0 0px var(--check), -14px -8px 0 0px var(--check);
+  }
+} 
