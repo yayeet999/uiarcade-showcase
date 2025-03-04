@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Search } from "lucide-react";
 import { motion } from "framer-motion";
-import { categories } from "@/data/categories";
+import { categories, getOrderedCategories } from "@/data/categories";
 import { Input } from "@/components/ui/input";
 
 const navLinks = [
@@ -18,6 +18,7 @@ export const Navbar = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const location = useLocation();
   const isComponentsPage = location.pathname === "/components";
+  const orderedCategories = getOrderedCategories();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -104,7 +105,7 @@ export const Navbar = () => {
         <div className="hidden md:block border-t border-border">
           <div className="container mx-auto px-4 py-2">
             <div className="flex items-center space-x-2 overflow-x-auto">
-              {categories.map((category) => (
+              {orderedCategories.map((category) => (
                 <Button
                   key={category.id}
                   variant={selectedCategory === category.id ? "default" : "ghost"}
@@ -149,7 +150,7 @@ export const Navbar = () => {
               <div className="space-y-2 pt-2 border-t border-border">
                 <h3 className="text-sm font-medium px-3 text-muted-foreground">Categories</h3>
                 <div className="space-y-1">
-                  {categories.map((category) => (
+                  {orderedCategories.map((category) => (
                     <Button
                       key={category.id}
                       variant={selectedCategory === category.id ? "default" : "ghost"}

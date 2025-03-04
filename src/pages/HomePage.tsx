@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowRight, Search } from "lucide-react";
+import InfiniteScrollGrid from "@/components/common/InfiniteScrollGrid";
 
 const HomePage = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -21,7 +22,7 @@ const HomePage = () => {
   return (
     <div>
       {/* Hero Section */}
-      <section className="py-20">
+      <section className="py-20 pb-6">
         <div className="container px-4 mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -39,7 +40,7 @@ const HomePage = () => {
               that help you build better applications faster.
             </p>
 
-            <form onSubmit={handleSearch} className="mb-8">
+            <form onSubmit={handleSearch} className="mb-0">
               <div className="flex flex-col sm:flex-row gap-4 justify-center w-full max-w-xl mx-auto">
                 <div className="relative w-full">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
@@ -62,6 +63,9 @@ const HomePage = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* Infinite Scroll Grid Section */}
+      <InfiniteScrollGrid />
 
       {/* CTA Section */}
       <section className="py-20">

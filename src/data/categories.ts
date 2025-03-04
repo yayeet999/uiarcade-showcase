@@ -1,5 +1,5 @@
 import { ComponentCategory } from "@/types/components";
-import { Layers, FileText, Square, LayoutGrid, FormInput, Plus } from "lucide-react";
+import { Layers, FileText, Square, LayoutGrid, FormInput, Plus, LayoutDashboard, LayoutTemplate } from "lucide-react";
 
 export const categories: ComponentCategory[] = [
   { 
@@ -78,11 +78,39 @@ export const categories: ComponentCategory[] = [
     description: "Miscellaneous UI components",
     icon: Plus,
     href: "/components/others",
-    order: 5,
+    order: 8,
     maxColumns: 4,
     displayOptions: {
       layout: "grid",
       itemsPerPage: 12,
+      showDescription: true
+    }
+  },
+  { 
+    id: "dashboards", 
+    name: "Dashboards",
+    description: "Dashboard layouts and components for data visualization",
+    icon: LayoutDashboard,
+    href: "/components/dashboards",
+    order: 6,
+    maxColumns: 3,
+    displayOptions: {
+      layout: "grid",
+      itemsPerPage: 9,
+      showDescription: true
+    }
+  },
+  { 
+    id: "sections", 
+    name: "Sections",
+    description: "Section components for page layouts and content organization",
+    icon: LayoutTemplate,
+    href: "/components/sections",
+    order: 7,
+    maxColumns: 3,
+    displayOptions: {
+      layout: "grid",
+      itemsPerPage: 9,
       showDescription: true
     }
   },
