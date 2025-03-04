@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { motion } from "framer-motion";
@@ -6,9 +6,34 @@ import { Link, useNavigate } from "react-router-dom";
 import { ArrowRight, Search } from "lucide-react";
 import InfiniteScrollGrid from "@/components/common/InfiniteScrollGrid";
 
+// Define keyframes for the grid animations
+const gridAnimationKeyframes = `
+@keyframes gridPulse {
+  0% { opacity: 0.8; }
+  50% { opacity: 1; }
+  100% { opacity: 0.8; }
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+`;
+
 const HomePage = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [scrollY, setScrollY] = useState(0);
   const navigate = useNavigate();
+
+  // Track scroll position for parallax effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+    
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,9 +46,78 @@ const HomePage = () => {
 
   return (
     <div>
+      {/* Inject keyframes */}
+      <style>{gridAnimationKeyframes}</style>
+      
       {/* Hero Section */}
-      <section className="py-20 pb-6">
-        <div className="container px-4 mx-auto">
+      <section className="py-20 pb-6 relative overflow-hidden">
+        {/* Retro Grid Background */}
+        <div className="absolute inset-0 z-0">
+          {/* Gradient overlay */}
+          <div 
+            className="absolute inset-0 bg-gradient-to-b from-primary/10 to-transparent opacity-70"
+            style={{
+              transform: `translateY(${scrollY * 0.15}px)`,
+            }}
+          />
+          
+          {/* Main grid */}
+          <div 
+            className="w-full h-full" 
+            style={{
+              backgroundImage: `
+                linear-gradient(to right, hsla(var(--primary), 0.1) 1px, transparent 1px),
+                linear-gradient(to bottom, hsla(var(--primary), 0.1) 1px, transparent 1px)
+              `,
+              backgroundSize: '40px 40px',
+              backgroundPosition: 'center center',
+              transform: `perspective(1000px) rotateX(20deg) translateY(${scrollY * 0.2}px)`,
+              transformOrigin: 'center top',
+              boxShadow: 'inset 0 0 30px hsla(var(--primary), 0.2)',
+              animation: 'gridPulse 4s ease-in-out infinite',
+            }}
+          />
+          
+          {/* Secondary grid (smaller) */}
+          <div 
+            className="absolute inset-0" 
+            style={{
+              backgroundImage: `
+                linear-gradient(to right, hsla(var(--primary), 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, hsla(var(--primary), 0.05) 1px, transparent 1px)
+              `,
+              backgroundSize: '10px 10px',
+              backgroundPosition: 'center center',
+              transform: `perspective(1000px) rotateX(20deg) translateY(${scrollY * 0.1}px)`,
+              transformOrigin: 'center top',
+              opacity: 0.5,
+              animation: 'gridPulse 3s ease-in-out infinite',
+            }}
+          />
+          
+          {/* Glow effect */}
+          <div 
+            className="absolute inset-0 opacity-30"
+            style={{
+              background: 'radial-gradient(circle at 50% 50%, hsla(var(--primary), 0.4) 0%, transparent 70%)',
+              filter: 'blur(40px)',
+              animation: 'gridPulse 5s ease-in-out infinite',
+            }}
+          />
+          
+          {/* Horizontal scan line effect */}
+          <div 
+            className="absolute inset-0 overflow-hidden opacity-10"
+            style={{
+              background: 'linear-gradient(to bottom, transparent, transparent 50%, hsla(var(--primary), 0.5) 50%, transparent 51%)',
+              backgroundSize: '100% 8px',
+              animation: 'scanline 10s linear infinite',
+              pointerEvents: 'none',
+            }}
+          />
+        </div>
+        
+        <div className="container px-4 mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
