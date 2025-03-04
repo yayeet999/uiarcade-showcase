@@ -40,8 +40,8 @@ const StaticGrid = ({
   );
 };
 
-// Pacman + Ghosts in one component so they line up exactly.
-// We reuse the same keyframes, placing the ghosts behind Pacman in the same container.
+// Pacman alone (no ghosts) in one component so it lines up exactly.
+// We reuse the same keyframes but remove the ghosts behind Pacman.
 
 const PacmanWithGhosts = ({ direction = "left" }) => {
   // Define ghost colors
@@ -60,14 +60,14 @@ const PacmanWithGhosts = ({ direction = "left" }) => {
           __html: `\n          @keyframes pacman-chomp1 {\n            0% { transform: rotate(0deg); }\n            50% { transform: rotate(45deg); }\n            100% { transform: rotate(0deg); }\n          }\n          \n          @keyframes pacman-chomp2 {\n            0% { transform: rotate(0deg); }\n            50% { transform: rotate(-45deg); }\n            100% { transform: rotate(0deg); }\n          }\n          \n          @keyframes pacman-move-left {\n            0% { left: -20px; }\n            100% { left: calc(100% + 20px); }\n          }\n          \n          @keyframes pacman-move-right {\n            0% { right: -20px; }\n            100% { right: calc(100% + 20px); }\n          }\n        `,
         }}
       />
-      {/* Pacman */}
+      {/* Pacman only */}
       <div
         style={{
           position: "absolute",
           top: "50%",
           transform: `translateY(-50%) ${
-            direction === "right" ? "rotateY(180deg)" : ""
-          }`,
+            direction === "right" ? "rotateY(180deg)" : ""}
+          `,
           left: direction === "left" ? "-20px" : "auto",
           right: direction === "right" ? "-20px" : "auto",
           width: "0",
@@ -110,34 +110,46 @@ const PacmanWithGhosts = ({ direction = "left" }) => {
           }}
         />
       </div>
+    </div>
+  );
+};
 
-      {/* Ghosts, each behind Pacman in the same container */}
+// New component just for ghosts moving from right to left
+const GhostsOnly = () => {
+  // Define ghost colors
+  const ghostColors = [
+    "#FF0000", // Blinky (red)
+    "#FFB8FF", // Pinky (pink)
+    "#00FFFF", // Inky (cyan)
+    "#FFB852", // Clyde (orange)
+  ];
+
+  return (
+    <div className="relative h-6 w-full overflow-hidden mx-auto">
+      {/* Keyframes are the same as in PacmanWithGhosts */}
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `\n          @keyframes ghost-move-right {\n            0% { right: -20px; }\n            100% { right: calc(100% + 20px); }\n          }\n        `,
+        }}
+      />
+
+      {/* Only ghosts in this container, moving right to left */}
       {ghostColors.map((color, i) => {
-        const offsetPx = 20 + i * 20; // each ghost behind Pacman by increments
-        // Same direction logic, but in the same container so they line up
-        const styleProps = direction === "left"
-          ? {
-              left: `-${offsetPx}px`,
-              right: "auto",
-              transform: "translateY(-50%)",
-            }
-          : {
-              right: `-${offsetPx}px`,
-              left: "auto",
-              transform: "translateY(-50%) rotateY(180deg)",
-            };
+        const offsetPx = i * 20; // space ghosts out
         return (
           <div
             key={color}
             style={{
               position: "absolute",
               top: "50%",
+              right: `-${offsetPx}px`,
+              left: "auto",
               width: "0",
               height: "0",
-              animation: `pacman-move-${direction} 7s linear 0s infinite normal forwards`,
+              animation: `ghost-move-right 7s linear 0s infinite normal forwards`,
               animationDelay: `${0.15 * i}s`,
-              zIndex: 1, // behind Pacman
-              ...styleProps,
+              zIndex: 1,
+              transform: "translateY(-50%)",
             }}
           >
             {/* Scale ghost so it matches Pacman's ~20px diameter */}
@@ -170,20 +182,20 @@ interface ComponentCardProps {
 }
 
 const ComponentCard = ({ title, category }: ComponentCardProps) => (
-  <div className="w-[160px] h-[120px] bg-card rounded-lg border border-border overflow-hidden group shadow-sm hover:shadow-md transition-all duration-300">
-    <div className="h-full p-3 flex flex-col justify-between transition-all duration-300 group-hover:bg-accent/50">
-      <div className="text-xs font-medium text-primary uppercase tracking-wider">
-        {category}
+  <div className="w-[165px] sm:w-[185px] md:w-[210px] lg:w-[230px] h-[125px] sm:h-[140px] md:h-[155px] lg:h-[170px] bg-card rounded-lg border border-border overflow-hidden group shadow-sm hover:shadow-md transition-all duration-300">
+    <div className="h-full p-3 md:p-4 flex flex-col justify-between transition-all duration-300 group-hover:bg-accent/50">
+      <div className="text-xs md:text-sm font-medium text-primary uppercase tracking-wider">
+        {/* Category text removed */}
       </div>
       <div>
-        <h3 className="text-sm font-semibold mb-1 group-hover:text-primary transition-colors">
-          {title}
+        <h3 className="text-sm md:text-base font-semibold mb-1 group-hover:text-primary transition-colors">
+          {/* Title text removed */}
         </h3>
-        <div className="flex items-center text-xs text-muted-foreground">
+        <div className="flex items-center text-xs md:text-sm text-muted-foreground">
           <div className="flex items-center">
-            <span className="inline-block w-1.5 h-1.5 rounded-full bg-primary mr-1"></span>
+            <span className="inline-block w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-primary mr-1 md:mr-2"></span>
             <span className="group-hover:text-foreground transition-colors">
-              View Component
+              {/* View Component text removed */}
             </span>
           </div>
         </div>
@@ -235,27 +247,27 @@ const InfiniteScrollGrid = ({ className }: InfiniteScrollGridProps) => {
     <div className={cn("pt-0 pb-8 overflow-hidden", className)}>
       <div className="space-y-0">
         {/* First row */}
-        <StaticGrid className="h-[120px]" offset={0}>
+        <StaticGrid className="h-[125px] sm:h-[140px] md:h-[155px] lg:h-[170px]" offset={0}>
           {row1Items}
         </StaticGrid>
 
-        {/* Pacman with Ghosts in one container, left-to-right */}
+        {/* Pacman alone in one container, left-to-right */}
         <div>
           <PacmanWithGhosts direction="left" />
         </div>
 
         {/* Second row - with offset to stagger alignment */}
-        <StaticGrid className="h-[120px]" offset={50}>
+        <StaticGrid className="h-[125px] sm:h-[140px] md:h-[155px] lg:h-[170px]" offset={50}>
           {row2Items}
         </StaticGrid>
 
-        {/* Removed second Pacman, replaced with empty container for consistent spacing */}
+        {/* Ghosts only between second and third rows - moving right to left */}
         <div>
-          <div className="relative h-6 w-full overflow-hidden mx-auto" />
+          <GhostsOnly />
         </div>
 
         {/* Third row - with different offset */}
-        <StaticGrid className="h-[120px]" offset={25}>
+        <StaticGrid className="h-[125px] sm:h-[140px] md:h-[155px] lg:h-[170px]" offset={25}>
           {row3Items}
         </StaticGrid>
       </div>
